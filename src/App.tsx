@@ -1,23 +1,12 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import { MdCheckCircleOutline, MdCopyright } from "react-icons/md";
-import { Link } from 'react-router-dom';
+import Header from './component/Header';
 
 function App() {
   return (
     <>
-      <div className='header'>
-        <div className='header-img'>
-          <img src={logo} className="App-logo" alt="logo" width={32} />
-        </div>
-
-        <div className='Menu'>
-          <span>Sobre</span>
-          <span>|</span>
-          <span><Link to="/login">Login</Link></span>
-        </div>
-      </div>
+      <Header />
       <div className='content'>
         <div className='firstPage'>
           <div className='title'>

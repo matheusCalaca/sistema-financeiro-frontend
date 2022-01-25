@@ -1,22 +1,12 @@
 import React from 'react';
-import logo from '../logo.svg';
 import '../resource/css/Login.css';
 import { MdCheckCircleOutline, MdCopyright } from "react-icons/md";
+import Header from '../component/Header';
 
 function Login() {
   return (
     <>
-      <div className='header'>
-        <div className='header-img'>
-          <img src={logo} className="App-logo" alt="logo" width={32} />
-        </div>
-
-        <div className='Menu'>
-          <span>Sobre</span>
-          <span>|</span>
-          <span>Login</span>
-        </div>
-      </div>
+      <Header />
       <div className='content'>
         <div className='firstPage'>
           <div className='title'>

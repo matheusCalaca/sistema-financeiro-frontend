@@ -1,42 +1,5 @@
 /* 
 ################
-#### HEADER ####
-################ 
-*/
-
-.header {
-  height: 50px;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: black solid 1px;
-}
-
-.header-img {
-  display: flex;
-}
-
-/* # Imagem */
-
-.App-logo {
-  margin-top: 0px;
-  margin-left: 5px;
-}
-
-/* # Menu */
-
-.Menu {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-.Menu span {
-  margin-left: 5px;
-  margin-right: 5px;
-}
-
-/* 
-################
 #### CONTET ####
 ################ 
 */
