@@ -1,8 +1,9 @@
 import React from 'react';
 import '../resource/css/Login.css';
-import { MdAccountCircle, MdAccountBox, MdPassword, MdCopyright } from "react-icons/md";
+import { MdAccountCircle, MdAccountBox, MdPassword } from "react-icons/md";
 import Header from '../component/Header';
 import { Link } from 'react-router-dom';
+import Footer from '../component/Footer';
 
 function Login() {
   return (
@@ -43,11 +44,7 @@ function Login() {
         </div>
       </div>
 
-      <div className='contentFooter'>
-        <div className='titleFooter'>
-          <h1><MdCopyright /> Matheus Calaça</h1>
-        </div>
-      </div>
+      <Footer />
     </>
   );
 }
