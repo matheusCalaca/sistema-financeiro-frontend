@@ -1,7 +1,7 @@
 import React from 'react';
-import './App.css';
+import '../resource/css/Home.css';
 import { MdCheckCircleOutline, MdCopyright } from "react-icons/md";
-import Header from './component/Header';
+import Header from '../component/Header';
 
 function App() {
   return (
@@ -81,11 +81,11 @@ function App() {
 
       </div>
 
-      <div className='contentFooter'>
+      <footer className='contentFooter'>
         <div className='titleFooter'>
           <h1><MdCopyright /> Matheus Calaça</h1>
         </div>
-      </div>
+      </footer>
     </>
   );
 }
