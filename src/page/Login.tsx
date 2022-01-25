@@ -1,10 +1,9 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from '../logo.svg';
+import '../resource/css/Login.css';
 import { MdCheckCircleOutline, MdCopyright } from "react-icons/md";
-import { Link } from 'react-router-dom';
 
-function App() {
+function Login() {
   return (
     <>
       <div className='header'>
@@ -15,7 +14,7 @@ function App() {
         <div className='Menu'>
           <span>Sobre</span>
           <span>|</span>
-          <span><Link to="/login">Login</Link></span>
+          <span>Login</span>
         </div>
       </div>
       <div className='content'>
@@ -101,4 +100,4 @@ function App() {
   );
 }
 
-export default App;
+export default Login;
