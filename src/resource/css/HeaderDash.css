@@ -1,0 +1,55 @@
+/* 
+################
+#### HEADER ####
+################ 
+*/
+
+.header {
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    border-bottom: black solid 1px;
+}
+
+.header-img {
+    display: flex;
+}
+
+/* # Imagem */
+
+.App-logo {
+    margin-top: 0px;
+    margin-left: 5px;
+}
+
+/* # Menu */
+
+.MenuDash {
+    display: flex;
+    /* justify-content: flex-end; */
+    align-items: center;
+}
+
+.MenuDash span {
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.menuDashTitle a {
+    text-decoration: none;
+    color: black;
+}
+
+.menuDashTitle a:hover {
+    color: rgba(104, 97, 97, 0.199);
+}
+
+.menuDashTitle a:visited {
+    color: black;
+}
+
+.MenuDashUser{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}

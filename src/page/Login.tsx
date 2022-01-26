@@ -36,7 +36,7 @@ function Login() {
 
         <div className='inputButton'>
           <div className='fieldButton'>
-            <button>Entrar</button>
+            <Link to="/dashboard" ><button>Entrar</button></Link>
           </div>
           <div className='fieldButton'>
             <Link to="/">cadastrar-se</Link>
