@@ -64,16 +64,16 @@ function Dashboard() {
               </tr>
 
               <tr className='backcolorRedLight'>
-                <td>Conta Energia</td>
+                <td>Conta de Agua</td>
                 <td>
-                  <span>1000</span>
+                  <span>456.67</span>
                   <span>R$</span>
                 </td>
                 <td><MdModeEdit /></td>
               </tr>
 
               <tr className='backcolorRed'>
-                <td>Conta Energia</td>
+                <td>Internet</td>
                 <td>
                   <span>1000</span>
                   <span>R$</span>
@@ -81,10 +81,10 @@ function Dashboard() {
                 <td><MdModeEdit /></td>
               </tr>
 
-              <tr className='backcolorGreen'>
-                <td>Conta Energia</td>
+              <tr className='backcolorGreenLight'>
+                <td>Salario</td>
                 <td>
-                  <span>1000</span>
+                  <span>2267,78</span>
                   <span>R$</span>
                 </td>
                 <td><MdModeEdit /></td>
