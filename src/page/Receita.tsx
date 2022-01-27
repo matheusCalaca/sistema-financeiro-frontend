@@ -3,7 +3,9 @@ import '../resource/css/Receita.css';
 import Footer from '../component/Footer';
 import Chart from 'react-google-charts';
 import HeaderDash from '../component/HeaderDash';
-import { MdModeEdit } from 'react-icons/md';
+import { MdAdd, MdModeEdit } from 'react-icons/md';
+import { Fab } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 export const data = [
   ["Task", "Hours per Day"],
@@ -161,7 +163,10 @@ function Receita() {
           </div>
 
         </div>
+      </div>
 
+      <div className="butoonFloat">
+        <MdAdd />
       </div>
 
       <Footer />
