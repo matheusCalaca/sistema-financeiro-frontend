@@ -1,0 +1,147 @@
+/* 
+################
+#### CONTET ####
+################ 
+*/
+
+/* # first page */
+
+.firstPage {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.158), rgba(255, 255, 255, 0.74)), url('../img/background-imag.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
+
+/* # texto */
+
+.title {
+  font-size: 2.5em;
+  margin: 0 10px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 1.2em;
+  margin: 0 10px;
+  text-align: center;
+}
+
+.titleCard {
+  font-size: 2em;
+  margin: 0 10px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.imgCard {
+  font-size: 3em;
+  margin: 0 10px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.subtitleCard {
+  font-size: 1.2em;
+  margin: 0 10px;
+  text-align: center;
+}
+
+/* # second page */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 160px;
+  margin: 10px;
+}
+
+/* # pageCard */
+
+/* 640 / 1007 / 1008 */
+@media screen and (max-width: 640px) {
+  .contentCard {
+    margin: 35px;
+  }
+
+  .pageCard {
+    display: flex;
+    flex-direction: column;
+    border: solid 1px black;
+    min-height: 160px;
+    padding: 15px;
+    margin: 10px;
+  }
+
+  .tableName{
+    display: none;
+  }
+}
+
+@media screen and (min-width: 641px) and (max-width: 1007px) {
+  .contentCard {
+    margin: 35px;
+  }
+
+  .pageCard {
+    display: flex;
+    border: solid 1px black;
+    min-height: 160px;
+    padding: 15px;
+    margin: 10px;
+  }
+
+  
+  .cardReceita{
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1008px) {
+  .contentCard {
+    display: flex;
+    justify-content: center;
+    margin: 35px;
+  }
+
+  .pageCard {
+    display: flex;
+    border: solid 1px black;
+    min-height: 150px;
+    max-width: 30%;
+    padding: 15px;
+    margin: 10px;
+  }
+
+  
+  .cardReceita{
+    display: none;
+  }
+}
+
+/* # card */
+
+.card{
+  display: flex;
+  padding: 5px;
+  flex-direction: column;
+  border: solid 1px black;
+  margin: 5px;
+  box-shadow: 3px 5px #88888828;
+}
+
+.titleCardBody{
+  font-size: 1.5em;
+}
+
+.colorGreen {
+  color: green;
+}
