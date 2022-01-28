@@ -2,35 +2,20 @@ import React, { FC } from 'react';
 import '../resource/css/HeaderDash.css';
 import Chart from 'react-google-charts';
 
-import despesa from '../data/dataDespesa.json'
+
 import ReceitaType from '../model/ReceitaType';
-
-// export const dataReceita = receita;
-
-
-export const dataDespesa = despesa;
+import DespesaType from '../model/DespesaType';
 
 interface DashGraficoProps {
   receita: ReceitaType[],
+  despesa: DespesaType[],
 }
-
-function somaDespesa() {
-  const sum = dataDespesa.filter(item => item.valor)
-    .reduce((sum, current) => {
-      return sum + current.valor
-    }, 0);
-  return Math.round(sum * 100) / 100
-}
-
-
-
-
 
 export const options = {
   pieHole: 0.3,
 };
 
-const DashboardGrafico: FC<DashGraficoProps > = ({ receita }): JSX.Element => {
+const DashboardGrafico: FC<DashGraficoProps> = ({ receita, despesa }): JSX.Element => {
 
   function somaReceita() {
     const sum = receita.filter(item => item.valor)
@@ -40,12 +25,21 @@ const DashboardGrafico: FC<DashGraficoProps > = ({ receita }): JSX.Element => {
     return Math.round(sum * 100) / 100
   }
 
-  
-const data = [
-  ["Title", "Value"],
-  ["receita", somaDespesa()],
-  ["gasto", somaReceita()],
-];
+
+  function somaDespesa() {
+    const sum = despesa.filter(item => item.valor)
+      .reduce((sum, current) => {
+        return sum + current.valor
+      }, 0);
+    return Math.round(sum * 100) / 100
+  }
+
+
+  const data = [
+    ["Title", "Value"],
+    ["receita", somaDespesa()],
+    ["gasto", somaReceita()],
+  ];
 
 
   return (
