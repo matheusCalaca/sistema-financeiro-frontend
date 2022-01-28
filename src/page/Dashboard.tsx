@@ -37,7 +37,7 @@ function Dashboard() {
               <div>Saldo: </div> <div>1000</div> <div>R$</div>
             </div>
             <div className='resumoFinanceiro'>
-              <span>Receita: </span> <span className='colorGreen'>1000</span> <span>/</span> <span>Gasto:</span> <span className='colorRed'>3000</span> <span>R$</span>
+              <span>Receita: </span> <span className='colorGreen'>1000</span> <span>/</span> <span>Despesa:</span> <span className='colorRed'>3000</span> <span>R$</span>
             </div>
           </div>
         </div>

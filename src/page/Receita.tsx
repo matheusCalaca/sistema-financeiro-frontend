@@ -4,8 +4,6 @@ import Footer from '../component/Footer';
 import Chart from 'react-google-charts';
 import HeaderDash from '../component/HeaderDash';
 import { MdAdd, MdModeEdit } from 'react-icons/md';
-import { Fab } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
 
 export const data = [
   ["Task", "Hours per Day"],
@@ -39,7 +37,7 @@ function Receita() {
               <div>Saldo: </div> <div>1000</div> <div>R$</div>
             </div>
             <div className='resumoFinanceiro'>
-              <span>Receita: </span> <span className='colorGreen'>1000</span> <span>/</span> <span>Gasto:</span> <span className='colorRed'>3000</span> <span>R$</span>
+              <span>Receita: </span> <span className='colorGreen'>1000</span> <span>/</span> <span>Despesa:</span> <span className='colorRed'>3000</span> <span>R$</span>
             </div>
           </div>
         </div>
