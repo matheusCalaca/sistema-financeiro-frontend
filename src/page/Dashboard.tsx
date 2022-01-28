@@ -5,8 +5,8 @@ import HeaderDash from '../component/HeaderDash';
 import { MdModeEdit } from 'react-icons/md';
 import DashboardGrafico from '../component/DashboardGrafico';
 
-import receita from '../data/dataReceita.json'
-import despesa from '../data/dataDespesa.json'
+import receita from '../data/dataReceita.json';
+import despesa from '../data/dataDespesa.json';
 import ReceitaType from '../model/ReceitaType';
 import DespesaType from '../model/DespesaType';
 
