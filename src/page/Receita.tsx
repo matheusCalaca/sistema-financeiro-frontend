@@ -5,9 +5,27 @@ import Chart from 'react-google-charts';
 import HeaderDash from '../component/HeaderDash';
 import { MdAdd, MdModeEdit } from 'react-icons/md';
 
+
+export const dataReceita = [
+  { "id": 1, "nome": "Salario", "data": "15/12/2021", "valor": 1506.03, "descricao": "parcela do decimo terceiro salario" },
+  { "id": 1, "nome": "Salario", "data": "10/12/2021", "valor": 2872.43, "descricao": "" },
+  { "id": 2, "nome": "Venda", "data": "05/12/2021", "valor": 1500.00, "descricao": "venda do video game PS3" },
+  { "id": 3, "nome": "Salario", "data": "10/11/2021", "valor": 2872.43, "descricao": "" },
+  { "id": 4, "nome": "Salario", "data": "10/10/2021", "valor": 2872.43, "descricao": "" },
+  { "id": 5, "nome": "Salario", "data": "10/09/2021", "valor": 2872.43, "descricao": "" }
+];
+
+function somaReceita() {
+  const sum = dataReceita.filter(item => item.valor)
+    .reduce((sum, current) => {
+      return sum + current.valor
+    }, 0);
+  return Math.round(sum * 100) / 100
+}
+
 export const data = [
   ["Task", "Hours per Day"],
-  ["receita", 1000],
+  ["receita", somaReceita()],
   ["gasto", 3000],
 ];
 
@@ -37,7 +55,7 @@ function Receita() {
               <div>Saldo: </div> <div>1000</div> <div>R$</div>
             </div>
             <div className='resumoFinanceiro'>
-              <span>Receita: </span> <span className='colorGreen'>1000</span> <span>/</span> <span>Despesa:</span> <span className='colorRed'>3000</span> <span>R$</span>
+              <span>Receita: </span> <span className='colorGreen'>{somaReceita()}</span> <span>/</span> <span>Despesa:</span> <span className='colorRed'>3000</span> <span>R$</span>
             </div>
           </div>
         </div>
@@ -47,62 +65,9 @@ function Receita() {
             <span>Receita</span>
           </div>
           <div className='cardReceita'>
-            <div className='card'>
-              <div className='titleCardBody'>Salario <span className='colorGreen'>2872,43 R$</span> </div>
-              <div className='cardBody'>
-                <span>10/12/2021</span>
-              </div>
-              <div className='cardDescription'></div>
-            </div>
 
-            <div className='card'>
-              <div className='titleCardBody'>Salario <span className='colorGreen'>1845,21 R$</span> </div>
-              <div className='cardBody'>
-                <span>15/12/2021</span>
-              </div>
-              <div className='cardDescription'>parcela do decimo tervceiro salaraio</div>
-            </div>
+            {dataReceita.map((data, i) => <div key={data.id} className="card"><div className="titleCardBody">{data.nome} <span className="colorGreen">{data.valor} R$</span> </div><div className="cardBody"><span>{data.data}</span></div><div className="cardDescription">{data.descricao}</div></div>)}
 
-
-            <div className='card'>
-              <div className='titleCardBody'>Venda <span className='colorGreen'>1500 R$</span> </div>
-              <div className='cardBody'>
-                <span>03/12/2021</span>
-              </div>
-              <div className='cardDescription'>Venda de VideoGame PS3</div>
-            </div>
-
-            <div className='card'>
-              <div className='titleCardBody'>Salario <span className='colorGreen'>2872,43 R$</span> </div>
-              <div className='cardBody'>
-                <span>10/11/2021</span>
-              </div>
-              <div className='cardDescription'></div>
-            </div>
-
-            <div className='card'>
-              <div className='titleCardBody'>Salario <span className='colorGreen'>2872,43 R$</span> </div>
-              <div className='cardBody'>
-                <span>10/10/2021</span>
-              </div>
-              <div className='cardDescription'></div>
-            </div>
-
-            <div className='card'>
-              <div className='titleCardBody'>Salario <span className='colorGreen'>2872,43 R$</span> </div>
-              <div className='cardBody'>
-                <span>10/09/2021</span>
-              </div>
-              <div className='cardDescription'></div>
-            </div>
-
-            <div className='card'>
-              <div className='titleCardBody'>Salario <span className='colorGreen'>2872,43 R$</span> </div>
-              <div className='cardBody'>
-                <span>10/08/2021</span>
-              </div>
-              <div className='cardDescription'></div>
-            </div>
           </div>
 
           <div className='tableName'>
@@ -114,49 +79,8 @@ function Receita() {
                 <th>descrição</th>
                 <th>Edit</th>
               </tr>
-              <tr className='backcolorGreen'>
-                <td>Salario</td>
-                <td>10/12/2021</td>
-                <td>
-                  <span>2872,43</span>
-                  <span>R$</span>
-                </td>
-                <td></td>
-                <td><MdModeEdit /></td>
-              </tr>
+              {dataReceita.map((data, i) => <tr key={data.id} className={(i % 2 === 0) ? "backcolorGreen" : "backcolorGreenLight"}><td>{data.nome}</td><td>{data.data}</td><td>    <span>{data.valor}</span>    <span>R$</span></td><td>{data.descricao}</td><td><MdModeEdit /></td></tr>)}
 
-              <tr className='backcolorGreenLight'>
-                <td>Venda</td>
-                <td>03/12/2021</td>
-                <td>
-                  <span>1500</span>
-                  <span>R$</span>
-                </td>
-                <td>venda do video game ps3</td>
-                <td><MdModeEdit /></td>
-              </tr>
-
-              <tr className='backcolorGreen'>
-                <td>Saalario</td>
-                <td>10/11/2021</td>
-                <td>
-                  <span>2872,43</span>
-                  <span>R$</span>
-                </td>
-                <td></td>
-                <td><MdModeEdit /></td>
-              </tr>
-
-              <tr className='backcolorGreenLight'>
-                <td>Salario</td>
-                <td>10/10/2021</td>
-                <td>
-                  <span>2872,43</span>
-                  <span>R$</span>
-                </td>
-                <td></td>
-                <td><MdModeEdit /></td>
-              </tr>
             </table>
           </div>
 
