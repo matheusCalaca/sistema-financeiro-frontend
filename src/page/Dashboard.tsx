@@ -4,6 +4,8 @@ import Footer from '../component/Footer';
 import Chart from 'react-google-charts';
 import HeaderDash from '../component/HeaderDash';
 import { MdModeEdit } from 'react-icons/md';
+import DashboardGrafico from '../component/DashboardGrafico';
+
 
 
 export const dataReceita = [
@@ -59,24 +61,7 @@ function Dashboard() {
         <div className='titleDash'>
           <span>Dezembro 2021</span>
         </div>
-        <div className='dashResumo'>
-          <div className='graficoDiv'>
-            <Chart
-              chartType="PieChart"
-              className='grafico'
-              data={data}
-              options={options}
-            />
-          </div>
-          <div className='dadosFinanceiro'>
-            <div className='titleSaldo'>
-              <div>Saldo: </div> <div>{(somaReceita() - somaDespesa())}</div> <div>R$</div>
-            </div>
-            <div className='resumoFinanceiro'>
-              <span>Receita: </span> <span className='colorGreen'>{somaReceita()}</span> <span>/</span> <span>Despesa:</span> <span className='colorRed'>{somaDespesa()}</span> <span>R$</span>
-            </div>
-          </div>
-        </div>
+        <DashboardGrafico />
 
         <div className='tableResumo'>
           <div className='tableResumoTitle'>

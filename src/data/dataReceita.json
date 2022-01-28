@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "nome": "Salario",
+        "data": "15/12/2021",
+        "valor": 1506.03,
+        "descricao": "parcela do decimo terceiro salario"
+    },
+    {
+        "id": 1,
+        "nome": "Salario",
+        "data": "10/12/2021",
+        "valor": 2872.43,
+        "descricao": ""
+    },
+    {
+        "id": 2,
+        "nome": "Venda",
+        "data": "05/12/2021",
+        "valor": 1500.00,
+        "descricao": "venda do video game PS3"
+    },
+    {
+        "id": 3,
+        "nome": "Salario",
+        "data": "10/11/2021",
+        "valor": 2872.43,
+        "descricao": ""
+    },
+    {
+        "id": 4,
+        "nome": "Salario",
+        "data": "10/10/2021",
+        "valor": 2872.43,
+        "descricao": ""
+    },
+    {
+        "id": 5,
+        "nome": "Salario",
+        "data": "10/09/2021",
+        "valor": 2872.43,
+        "descricao": ""
+    }
+]
