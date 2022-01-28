@@ -5,11 +5,7 @@ import Chart from 'react-google-charts';
 import HeaderDash from '../component/HeaderDash';
 import { MdAdd, MdModeEdit } from 'react-icons/md';
 
-export const data = [
-  ["Task", "Hours per Day"],
-  ["receita", 1000],
-  ["gasto", 3000],
-];
+
 
 export const options = {
   pieHole: 0.4,
@@ -30,6 +26,12 @@ function somaDespesa() {
     }, 0);
   return Math.round(sum * 100) / 100
 }
+
+export const data = [
+  ["Task", "Hours per Day"],
+  ["receita", 1000],
+  ["gasto", somaDespesa()],
+];
 
 function Despesa() {
   return (
