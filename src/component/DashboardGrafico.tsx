@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import '../resource/css/HeaderDash.css';
+import '../resource/css/DashGrafico.css';
 import Chart from 'react-google-charts';
 
 
