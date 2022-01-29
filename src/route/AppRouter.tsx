@@ -6,6 +6,7 @@ import { DespesaCadastro } from '../page/DespesaCadastro';
 import App from '../page/Home';
 import Login from '../page/Login';
 import { Metas } from '../page/Metas';
+import { MetasCadastro } from '../page/MetasCadastro';
 import Receita from '../page/Receita';
 import { ReceitaCadastro } from '../page/ReceitaCadastro';
 
@@ -21,6 +22,7 @@ function AppRouter() {
                 <Route path="/despesa" element={<Despesa />} />
                 <Route path="/despesa/cad" element={<DespesaCadastro />} />
                 <Route path="/meta" element={<Metas />} />
+                <Route path="/meta/cad" element={<MetasCadastro />} />
             </Routes>
         </BrowserRouter>
     );

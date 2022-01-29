@@ -4,7 +4,7 @@ import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
 import { MdCheck } from 'react-icons/md';
 
-export const ReceitaCadastro = (): JSX.Element => {
+export const MetasCadastro = (): JSX.Element => {
 
   return (
     <>
@@ -13,14 +13,14 @@ export const ReceitaCadastro = (): JSX.Element => {
 
         <div className='tableResumo'>
           <div className='tableResumoTitle'>
-            <span>Cadastrar Receita</span>
+            <span>Cadastrar Meta</span>
           </div>
         </div>
       </div>
       <div className='formCad'>
         <div className='fieldCad'>
-          <div className='labelCad'><b>Nome:</b></div>
-          <div className='inputCad'><input type="text" name="nome" /></div>
+          <div className='labelCad'><b>titulo:</b></div>
+          <div className='inputCad'><input type="text" name="titulo" /></div>
         </div>
         <div className='fieldCad'>
           <div className='labelCad'><b>Valor:</b></div>
