@@ -12,6 +12,7 @@ import CardDespesa from '../component/CardDespesa';
 import TableDespesa from '../component/TableDespesa';
 import MesType from '../model/MesType';
 import meses from '../data/dataMes.json';
+import { Link } from 'react-router-dom';
 
 export const dataMes: MesType[] = meses;
 
@@ -102,11 +103,11 @@ export const Despesa = (): JSX.Element => {
 
         </div>
       </div>
-
-      <div className="butoonFloat">
-        <MdAdd />
-      </div>
-
+      <Link to="cad">
+        <div className="butoonFloat">
+          <MdAdd />
+        </div>
+      </Link>
       <Footer />
     </>
   );

@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Habitação",
+        "value": 1,
+        "id": 1
+    },
+    {
+        "name": "Transporte",
+        "value": 2,
+        "id": 2
+    },
+    {
+        "name": "Boleto",
+        "value": 3,
+        "id": 3
+    },
+    {
+        "name": "Restaurante",
+        "value": 4,
+        "id": 4
+    },
+    {
+        "name": "Familia",
+        "value": 5,
+        "id": 5
+    }
+]

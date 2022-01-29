@@ -1,1 +1,57 @@
+/* # cores  */
 
+.colorGreen {
+    color: green;
+}
+
+.colorRed {
+    color: red;
+}
+
+.colorGreenLight {
+    color: rgb(68, 129, 68);
+}
+
+.colorRedLight {
+    color: rgb(255, 97, 97);
+}
+
+
+/* # background color */
+
+.backcolorGreen {
+    background-color: green;
+}
+
+.backcolorRed {
+    background-color: red;
+}
+
+.backcolorGreenLight {
+    background-color: rgb(68, 129, 68);
+}
+
+.backcolorRedLight {
+    background-color: rgb(255, 97, 97);
+}
+
+/* 
+################
+#### RESUMO ####
+################ 
+*/
+
+/* # title resumo */
+.tableResumo {
+    margin: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tableResumoTitle {
+    color: black;
+    font-size: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0px;
+}

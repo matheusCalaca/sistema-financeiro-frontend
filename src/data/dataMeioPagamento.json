@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Cartão Crédito",
+        "value": 1,
+        "id": 1
+    },
+    {
+        "name": "Cartão Debito",
+        "value": 2,
+        "id": 2
+    },
+    {
+        "name": "Boleto",
+        "value": 3,
+        "id": 3
+    },
+    {
+        "name": "Dinheiro",
+        "value": 4,
+        "id": 4
+    },
+    {
+        "name": "PIX",
+        "value": 5,
+        "id": 5
+    }
+]
