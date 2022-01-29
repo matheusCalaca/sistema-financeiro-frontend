@@ -106,11 +106,11 @@ export const Receita = (): JSX.Element => {
         </div>
       </div>
 
-<Link to="cad">
-      <div className="butoonFloat">
-        <MdAdd />
-      </div>
-</Link>
+      <Link to="cad">
+        <div className="butoonFloat">
+          <MdAdd />
+        </div>
+      </Link>
       <Footer />
     </>
   );
