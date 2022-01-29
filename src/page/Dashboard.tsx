@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../resource/css/Dashboard.css';
 import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
@@ -11,14 +11,17 @@ import DespesaType from '../model/DespesaType';
 import DashType from '../model/DashType';
 import CardDash from '../component/CardDash';
 import TableDash from '../component/TableDash';
+import MesType from '../model/MesType';
+import meses from '../data/dataMes.json';
 
 export const dataReceita: ReceitaType[] = receita;
+export const dataMes: MesType[] = meses;
 
 export const dataDespesa: DespesaType[] = despesa;
 export let dataDash: DashType[] = new Array();
 export let id: number = 0;
 
-function dadosDash() {
+function dadosDash(mes: Number) {
   id = 0;
   dataDash = new Array();
 
@@ -72,26 +75,38 @@ function dadosDash() {
 
         return 0;
       }
-    )
+    ).filter(item => Number(item.data.split("/")[1]) === mes)
 }
 
-function Dashboard() {
+export const Dashboard = (): JSX.Element => {
+  const [currentMes, setCurrentMes] = useState<MesType>(dataMes[11]);
+
+  function change(event: React.ChangeEvent<HTMLSelectElement>) {
+    event.preventDefault();
+    setCurrentMes(dataMes[Number(event.target.value) - 1]);
+  }
+
   return (
     <>
       <HeaderDash />
       <div className='saldoDash'>
         <div className='titleDash'>
-          <span>Dezembro 2021</span>
+          <span>{currentMes.name} 2021</span>
         </div>
         <DashboardGrafico receita={dataReceita} despesa={despesa} />
 
         <div className='tableResumo'>
           <div className='tableResumoTitle'>
             <span>Resumo</span>
+
+            <select value={currentMes.value} onChange={change}>
+              <option>Escolha o mês</option>
+              {dataMes.map(item => <option key={item.value} value={item.value}>{item.name}</option>)}
+            </select>
           </div>
 
-          <CardDash dataDash={dadosDash()} />
-          <TableDash dataDash={dadosDash()} />
+          <CardDash dataDash={dadosDash(currentMes.value)} />
+          <TableDash dataDash={dadosDash(currentMes.value)} />
 
         </div>
       </div>
