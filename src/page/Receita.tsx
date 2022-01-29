@@ -12,6 +12,7 @@ import CardReceita from '../component/CardReceita';
 import TableReceita from '../component/TableReceita';
 import MesType from '../model/MesType';
 import meses from '../data/dataMes.json';
+import { Link } from 'react-router-dom';
 
 export const dataMes: MesType[] = meses;
 
@@ -105,10 +106,11 @@ export const Receita = (): JSX.Element => {
         </div>
       </div>
 
+<Link to="cad">
       <div className="butoonFloat">
         <MdAdd />
       </div>
-
+</Link>
       <Footer />
     </>
   );

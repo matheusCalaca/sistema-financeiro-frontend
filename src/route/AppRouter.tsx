@@ -6,6 +6,7 @@ import { DespesaCadastro } from '../page/DespesaCadastro';
 import App from '../page/Home';
 import Login from '../page/Login';
 import Receita from '../page/Receita';
+import { ReceitaCadastro } from '../page/ReceitaCadastro';
 
 function AppRouter() {
     return (
@@ -15,6 +16,7 @@ function AppRouter() {
                 <Route path="/login" element={<Login />} />
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/receita" element={<Receita />} />
+                <Route path="/receita/cad" element={<ReceitaCadastro />} />
                 <Route path="/despesa" element={<Despesa />} />
                 <Route path="/despesa/cad" element={<DespesaCadastro />} />
             </Routes>

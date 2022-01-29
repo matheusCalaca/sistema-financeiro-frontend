@@ -18,12 +18,12 @@ export const dataMes: MesType[] = meses;
 export const dataReceita: ReceitaType[] = receita;
 
 export const dataDespesa: DespesaType[] = despesa;
-export let dataDash: DashType[] = new Array();
+export let dataDash: DashType[] = [];
 export let id: number = 0;
 
 function dadosDash(mes: Number) {
   id = 0;
-  dataDash = new Array();
+  dataDash = [];
 
   dataDespesa.forEach(item => {
     let dt: DashType = { id: ++id, nome: item.nome, valor: item.valor, data: item.data, type: false };

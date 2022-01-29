@@ -46,7 +46,7 @@ export const DespesaCadastro = (): JSX.Element => {
           <div className='inputCad'><input type="number" name="valor" /></div>
         </div>
         <div className='fieldCad'>
-          <div className='labelCad'><b>Maeio Pagamento:</b></div>
+          <div className='labelCad'><b>Meio Pagamento:</b></div>
           <div className='inputCad'>
             <select value={currentMeioPagamento?.value} onChange={changeMeioPagamento}>
               <option>Meio Pagamento</option>
