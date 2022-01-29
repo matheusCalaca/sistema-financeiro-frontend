@@ -1,20 +1,3 @@
-/* 
-################
-#### RESUMO ####
-################ 
-*/
-
-/* # title resumo */
-.tableResumo {
-    margin: 15px;
-    display: flex;
-    flex-direction: column;
-}
-
-.tableResumoTitle {
-    color: black;
-    font-size: 1.5em;
-}
 
 /* # table */
 
