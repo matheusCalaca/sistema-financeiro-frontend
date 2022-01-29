@@ -1,6 +1,6 @@
 
 interface ReceitaType  {
-  id?: number,
+  id: number,
   nome: string,
   data: string,
   valor: number,

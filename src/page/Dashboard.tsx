@@ -14,8 +14,8 @@ import TableDash from '../component/TableDash';
 import MesType from '../model/MesType';
 import meses from '../data/dataMes.json';
 
-export const dataReceita: ReceitaType[] = receita;
 export const dataMes: MesType[] = meses;
+export const dataReceita: ReceitaType[] = receita;
 
 export const dataDespesa: DespesaType[] = despesa;
 export let dataDash: DashType[] = new Array();
