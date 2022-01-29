@@ -1,8 +1,5 @@
 import React, { FC } from 'react';
-import logo from '../resource/img/logo.svg';
 import '../resource/css/HeaderDash.css';
-import { Link } from 'react-router-dom';
-import { MdOutlineAccountCircle } from 'react-icons/md';
 import ReceitaType from '../model/ReceitaType';
 
 interface CardReceitaProps {

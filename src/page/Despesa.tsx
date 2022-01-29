@@ -2,12 +2,14 @@ import React from 'react';
 import '../resource/css/Receita.css';
 import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
-import { MdAdd, MdModeEdit } from 'react-icons/md';
+import { MdAdd } from 'react-icons/md';
 import ReceitaType from '../model/ReceitaType';
 import DespesaType from '../model/DespesaType';
 import receita from '../data/dataReceita.json';
 import despesa from '../data/dataDespesa.json';
 import DashboardGrafico from '../component/DashboardGrafico';
+import CardDespesa from '../component/CardDespesa';
+import TableDespesa from '../component/TableDespesa';
 
 
 export const dataReceita: ReceitaType[] = receita;
@@ -27,26 +29,9 @@ function Despesa() {
           <div className='tableResumoTitle'>
             <span>Despesa</span>
           </div>
-          <div className='cardReceita'>
-            {dataDespesa.map((data, i) => <div key={data.id} className="card"><div className="titleCardBody">{data.nome} <span className="colorRed">{data.valor} R$</span> </div> <div className="cardBody">  <span>{data.data}</span></div><div className="cardDescription">{data.porque}</div></div>)}
-          </div>
 
-          <div className='tableName'>
-            <table>
-              <tr>
-                <th>Nome</th>
-                <th>data</th>
-                <th>Valor</th>
-                <th>Meio Pag.</th>
-                <th>Onde</th>
-                <th>Por que</th>
-                <th>Categoria</th>
-                <th>Edit</th>
-              </tr>
-              {dataDespesa.map((data, i) => <tr key={data.id} className={(i % 2 === 0) ? "backcolorRed" : "backcolorRedLight"}><td>{data.nome}</td><td>{data.data}</td><td>{data.valor} R$</td><td>{data.meioPagamento}</td><td>{data.onde}</td><td>{data.porque}</td><td>{data.categoria}</td><td><MdModeEdit /></td></tr>)}
-
-            </table>
-          </div>
+          <CardDespesa despesa={despesa} />
+          <TableDespesa despesa={despesa} />
 
         </div>
       </div>

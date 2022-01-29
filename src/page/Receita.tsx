@@ -2,7 +2,7 @@ import React from 'react';
 import '../resource/css/Receita.css';
 import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
-import { MdAdd, MdModeEdit } from 'react-icons/md';
+import { MdAdd } from 'react-icons/md';
 import ReceitaType from '../model/ReceitaType';
 import DespesaType from '../model/DespesaType';
 import receita from '../data/dataReceita.json';
@@ -35,19 +35,7 @@ function Receita() {
           
           <CardReceita receita={receita}/>
 
-          <div className='tableName'>
-            <table>
-              <tr>
-                <th>Nome</th>
-                <th>data</th>
-                <th>Valor</th>
-                <th>descrição</th>
-                <th>Edit</th>
-              </tr>
               <TableReceita receita={receita}/>
-
-            </table>
-          </div>
 
         </div>
       </div>
