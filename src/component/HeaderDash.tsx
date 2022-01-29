@@ -19,7 +19,7 @@ function HeaderDash() {
           <span>|</span>
           <span className='menuDashTitle'><Link to="/despesa">Despesa</Link></span>
           <span>|</span>
-          <span className='menuDashTitle'><Link to="/login">Meta</Link></span>
+          <span className='menuDashTitle'><Link to="/meta">Meta</Link></span>
         </div>
 
         <div className='MenuDashUser'>

@@ -1,0 +1,16 @@
+[
+    {
+        "id": 1,
+        "titulo": "Casa",
+        "data": "01/12/2026",
+        "valor": 600000.00,
+        "descricao": "Compra de uma casa na região central da cidade"
+    },
+    {
+        "id": 2,
+        "titulo": "Troca de Carro",
+        "data": "01/12/2023",
+        "valor": 28000.00,
+        "descricao": "trocar o carro atual para um modelo mais novo"
+    }
+]
