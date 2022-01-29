@@ -7,13 +7,6 @@
         "descricao": "parcela do decimo terceiro salario"
     },
     {
-        "id": 1,
-        "nome": "Salario",
-        "data": "10/12/2021",
-        "valor": 2872.43,
-        "descricao": ""
-    },
-    {
         "id": 2,
         "nome": "Venda",
         "data": "05/12/2021",
@@ -38,6 +31,13 @@
         "id": 5,
         "nome": "Salario",
         "data": "10/09/2021",
+        "valor": 2872.43,
+        "descricao": ""
+    },
+    {
+        "id": 6,
+        "nome": "Salario",
+        "data": "10/12/2021",
         "valor": 2872.43,
         "descricao": ""
     }

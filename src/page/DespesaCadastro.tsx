@@ -22,7 +22,7 @@ export const DespesaCadastro = (): JSX.Element => {
   
   function changeCategory(event: React.ChangeEvent<HTMLSelectElement>) {
     event.preventDefault();
-    setCurrentMeioPagamento(dataCategory[Number(event.target.value) - 1]);
+    setCurrentCategory(dataCategory[Number(event.target.value) - 1]);
   }
 
   return (
