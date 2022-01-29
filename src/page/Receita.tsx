@@ -8,6 +8,8 @@ import DespesaType from '../model/DespesaType';
 import receita from '../data/dataReceita.json';
 import despesa from '../data/dataDespesa.json';
 import DashboardGrafico from '../component/DashboardGrafico';
+import CardReceita from '../component/CardReceita';
+import TableReceita from '../component/TableReceita';
 
 
 export const dataReceita: ReceitaType[] = receita;
@@ -30,11 +32,8 @@ function Receita() {
           <div className='tableResumoTitle'>
             <span>Receita</span>
           </div>
-          <div className='cardReceita'>
-
-            {dataReceita.map((data, i) => <div key={data.id} className="card"><div className="titleCardBody">{data.nome} <span className="colorGreen">{data.valor} R$</span> </div><div className="cardBody"><span>{data.data}</span></div><div className="cardDescription">{data.descricao}</div></div>)}
-
-          </div>
+          
+          <CardReceita receita={receita}/>
 
           <div className='tableName'>
             <table>
@@ -45,7 +44,7 @@ function Receita() {
                 <th>descrição</th>
                 <th>Edit</th>
               </tr>
-              {dataReceita.map((data, i) => <tr key={data.id} className={(i % 2 === 0) ? "backcolorGreen" : "backcolorGreenLight"}><td>{data.nome}</td><td>{data.data}</td><td>    <span>{data.valor}</span>    <span>R$</span></td><td>{data.descricao}</td><td><MdModeEdit /></td></tr>)}
+              <TableReceita receita={receita}/>
 
             </table>
           </div>
