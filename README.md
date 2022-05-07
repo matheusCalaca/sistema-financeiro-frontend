@@ -13,4 +13,4 @@ apos iniciar abrir o endereço [http://localhost:3000](http://localhost:3000) pa
 
 # fluxo das telas
 
-<img src="https://github.com/matheusCalaca/sistema-financeiro-frontend/blob/main/resource/telas/fluxo%20de%20telas.png"/>
+<img src="./resource/telas/fluxodetelas.png"/>
