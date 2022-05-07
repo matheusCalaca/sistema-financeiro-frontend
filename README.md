@@ -13,4 +13,6 @@ apos iniciar abrir o endereço [http://localhost:3000](http://localhost:3000) pa
 
 # fluxo das telas
 
+[Fluxo em PDF](./resource/telas/fluxodetelas.pdf)
+
 <img src="./resource/telas/fluxodetelas.png"/>
