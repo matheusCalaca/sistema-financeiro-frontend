@@ -10,3 +10,7 @@ A ideia e construir um sistema que facilite a população ter um controle de sua
 ``npm start``
 
 apos iniciar abrir o endereço [http://localhost:3000](http://localhost:3000) para visualizar o front da aplicação. 
+
+# fluxo das telas
+
+!['./resource/fluxo de telas.png']
