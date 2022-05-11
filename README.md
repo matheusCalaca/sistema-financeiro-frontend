@@ -16,6 +16,6 @@ apos iniciar abrir o endereço [http://localhost:3000](http://localhost:3000) pa
 [Fluxo em PDF](./resource/telas/fluxodetelas.pdf)
 
 video do fluxo grama
-[![Watch the video](./resource/telas/screnshottelainicialvideo.png)](./resource/telas/videoDoFluxoDeInterface.mp4)
+[![Watch the video](./resource/telas/screnshottelainicialvideo.png)](https://youtu.be/QGP4Mr9GkJk)
 
 <img src="./resource/telas/fluxodetelas.png"/>
