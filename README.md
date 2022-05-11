@@ -18,4 +18,6 @@ apos iniciar abrir o endereço [http://localhost:3000](http://localhost:3000) pa
 video do fluxo grama
 [![Watch the video](./resource/telas/screnshottelainicialvideo.png)](https://youtu.be/QGP4Mr9GkJk)
 
+
+[link do prototipo de fluxo](https://app.moqups.com/8ZsfM1H1KGRDxuvSzI8tnv8th5R67XTv/edit/page/aa9df7b72)
 <img src="./resource/telas/fluxodetelas.png"/>
