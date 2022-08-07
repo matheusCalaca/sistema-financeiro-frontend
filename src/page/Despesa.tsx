@@ -20,7 +20,7 @@ export const dataMes: MesType[] = meses;
 export const dataReceita: ReceitaType[] = receita;
 
 export const Despesa = (): JSX.Element => {
-  const [currentMes, setCurrentMes] = useState<MesType>(dataMes[11]);
+  const [currentMes, setCurrentMes] = useState<MesType>(dataMes[new Date().getMonth()]);
   const [despesas, setDespesas] = useState<DespesaType[]>([])
 
   useEffect(() => {
@@ -29,7 +29,6 @@ export const Despesa = (): JSX.Element => {
   }, [])
 
   useEffect(() => {
-    
     loadDados()
   }, [currentMes])
 
