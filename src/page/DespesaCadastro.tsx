@@ -6,24 +6,56 @@ import { MdCheck } from 'react-icons/md';
 import OptionType from '../model/OptionType';
 import meioPagamento from '../data/dataMeioPagamento.json'
 import category from '../data/dataCategoria.json'
+import api from '../api/API';
 
 export const dataMeioPagamento: OptionType[] = meioPagamento;
 export const dataCategory: OptionType[] = category;
 
+export type Despesa = {
+  data?: number;
+  descricao?: string;
+  idCliente?: number;
+  idCategoria?: number;
+  meioDePagamento?: string;
+  nome?: string;
+  onde?: string;
+  porQue?: string;
+  valor?: number;
+}
+
 export const DespesaCadastro = (): JSX.Element => {
   const [currentMeioPagamento, setCurrentMeioPagamento] = useState<OptionType>();
   const [currentCategory, setCurrentCategory] = useState<OptionType>();
+  const [despesaCurrente, setDespesaCurrente] = useState<Despesa>({ idCliente: 1 });
+
 
 
   function changeMeioPagamento(event: React.ChangeEvent<HTMLSelectElement>) {
     event.preventDefault();
-    setCurrentMeioPagamento(dataMeioPagamento[Number(event.target.value) - 1]);
+    setCurrentMeioPagamento(dataMeioPagamento[Number(event.target.id) - 1]);
+    setDespesaCurrente({...despesaCurrente, meioDePagamento: event.target.value});
   }
   
   function changeCategory(event: React.ChangeEvent<HTMLSelectElement>) {
     event.preventDefault();
     setCurrentCategory(dataCategory[Number(event.target.value) - 1]);
+    //todo: trocar pelo real
+    setDespesaCurrente({...despesaCurrente, idCategoria: 1});
   }
+
+
+  function changeInputs(event: React.ChangeEvent<any>) {
+    event.preventDefault();
+    const { name, value } = event.target;
+    setDespesaCurrente({ ...despesaCurrente, [name]: value });
+    console.log(despesaCurrente);
+
+  }
+
+  function cadastro() {
+    api.post("despesa", despesaCurrente).then((res) => console.log(res)).catch((err) => console.log(err))
+  }
+
 
   return (
     <>
@@ -39,11 +71,11 @@ export const DespesaCadastro = (): JSX.Element => {
       <div className='formCad'>
         <div className='fieldCad'>
           <div className='labelCad'><b>Nome:</b></div>
-          <div className='inputCad'><input type="text" name="nome" /></div>
+          <div className='inputCad'><input type="text" name="nome"  value={despesaCurrente.nome} onChange={changeInputs}/></div>
         </div>
         <div className='fieldCad'>
           <div className='labelCad'><b>Valor:</b></div>
-          <div className='inputCad'><input type="number" name="valor" /></div>
+          <div className='inputCad'><input type="number" name="valor" value={despesaCurrente.valor} onChange={changeInputs} /></div>
         </div>
         <div className='fieldCad'>
           <div className='labelCad'><b>Meio Pagamento:</b></div>
@@ -56,11 +88,11 @@ export const DespesaCadastro = (): JSX.Element => {
         </div>
         <div className='fieldCad'>
           <div className='labelCad'><b>Onde:</b></div>
-          <div className='inputCad'><input type="text" name="onde" /></div>
+          <div className='inputCad'><input type="text" name="onde" value={despesaCurrente.onde} onChange={changeInputs} /></div>
         </div>
         <div className='fieldCad'>
           <div className='labelCad'><b>Motivo:</b></div>
-          <div className='inputCad'><textarea name="motivo" /></div>
+          <div className='inputCad'><textarea name="descricao" value={despesaCurrente.descricao} onChange={changeInputs} /></div>
         </div>
         <div className='fieldCad'>
           <div className='labelCad'><b>Categoria:</b></div>
@@ -73,12 +105,12 @@ export const DespesaCadastro = (): JSX.Element => {
         </div>
         <div className='fieldCad'>
           <div className='labelCad'><b>Data:</b></div>
-          <div className='inputCad'><input type="date" name="data" /></div>
+          <div className='inputCad'><input type="date" name="data" value={despesaCurrente.data} onChange={changeInputs} /></div>
         </div>
       </div>
 
       <div className="butoonFloatCad">
-        <MdCheck />
+        <MdCheck onClick={cadastro}/>
       </div>
 
       <Footer />

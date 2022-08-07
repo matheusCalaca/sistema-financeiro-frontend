@@ -2,7 +2,7 @@
 interface OptionType {
   id: number,
   name: string,
-  value: number,
+  value: number | string,
 };
 
 export default OptionType;
