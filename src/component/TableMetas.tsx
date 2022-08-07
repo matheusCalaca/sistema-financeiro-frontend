@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import '../resource/css/HeaderDash.css';
 import MetasType from '../model/MetasType';
+import { convertionData } from './Uteis';
 
 interface TableReceitaProps {
   metas: MetasType[],
@@ -8,11 +9,6 @@ interface TableReceitaProps {
 
 
 export const TableMetas: FC<TableReceitaProps> = ({ metas }): JSX.Element => {
-
-function converteDate(data: string): string {
-  let dts = data.split("T")[0]
-  return `${dts.split("-")[2]}\\${dts.split("-")[1]}\\${dts.split("-")[0]}`
-}
 
   return (
     <>
@@ -25,7 +21,7 @@ function converteDate(data: string): string {
             <th>Valor</th>
             <th>data</th>
           </tr>
-          {metas.map((data, i) => <tr key={data.id}><td>{data.titulo}</td><td>{data.descricao}</td><td>    <span>{data.valor}</span>    <span>R$</span></td><td>{converteDate(data.data)}</td></tr>)}
+          {metas.map((data, i) => <tr key={data.id}><td>{data.titulo}</td><td>{data.descricao}</td><td>    <span>{data.valor}</span>    <span>R$</span></td><td>{convertionData(data.data)}</td></tr>)}
 
 
         </table>

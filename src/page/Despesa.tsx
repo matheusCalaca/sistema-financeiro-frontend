@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../resource/css/Receita.css';
 import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
@@ -13,36 +13,63 @@ import TableDespesa from '../component/TableDespesa';
 import MesType from '../model/MesType';
 import meses from '../data/dataMes.json';
 import { Link } from 'react-router-dom';
+import api from '../api/API';
 
 export const dataMes: MesType[] = meses;
 
 export const dataReceita: ReceitaType[] = receita;
 
-export const dataDespesa: DespesaType[] = despesa;
 export const Despesa = (): JSX.Element => {
   const [currentMes, setCurrentMes] = useState<MesType>(dataMes[11]);
+  const [despesas, setDespesas] = useState<DespesaType[]>([])
+
+  useEffect(() => {
+    getCurrentMonth()
+    loadDados()
+  }, [])
+
+  useEffect(() => {
+    
+    loadDados()
+  }, [currentMes])
+
+  async function loadDados() {
+    await api.get("despesa", { params: { idCliente: 1, month: currentMes.value  } })
+      .then(response => {
+        setDespesas(response.data)
+        console.log(despesas);
+      })
+      .catch(error => console.log(`despesa: ${error}`)
+      ).finally(
+        () => { console.log("finalizado"); }
+      );
+  }
 
   function change(event: React.ChangeEvent<HTMLSelectElement>) {
     event.preventDefault();
     setCurrentMes(dataMes[Number(event.target.value) - 1]);
+    loadDados();
   }
 
   function onlyUnique(value: any, index: any, self: any) {
     return self.indexOf(value) === index;
   }
 
+  function getCurrentMonth(){
+    setCurrentMes(dataMes[new Date().getMonth()]);
+  }
+
 
   function dados(mes: Number) {
 
-
-    return dataDespesa.filter((v, i, a) => onlyUnique(v.id, i, a.map(i => i.id)))
+    return despesas.filter((v, i, a) => onlyUnique(v.id, i, a.map(i => i.id)))
       .sort(
         (n1, n2) => {
-          if (n1.data.split("/")[0] > n2.data.split("/")[0]) {
+          if (n1.data.split("-")[0] > n2.data.split("-")[0]) {
             return -1;
           }
 
-          if (n1.data.split("/")[0] < n2.data.split("/")[0]) {
+          if (n1.data.split("-")[0] < n2.data.split("-")[0]) {
             return 1;
           }
 
@@ -51,11 +78,11 @@ export const Despesa = (): JSX.Element => {
       )
       .sort(
         (n1, n2) => {
-          if (n1.data.split("/")[1] > n2.data.split("/")[1]) {
+          if (n1.data.split("-")[1] > n2.data.split("-")[1]) {
             return -1;
           }
 
-          if (n1.data.split("/")[1] < n2.data.split("/")[1]) {
+          if (n1.data.split("-")[1] < n2.data.split("-")[1]) {
             return 1;
           }
 
@@ -64,17 +91,18 @@ export const Despesa = (): JSX.Element => {
       )
       .sort(
         (n1, n2) => {
-          if (n1.data.split("/")[2] > n2.data.split("/")[2]) {
+          if (n1.data.split("-")[2] > n2.data.split("-")[2]) {
             return -1;
           }
 
-          if (n1.data.split("/")[2] < n2.data.split("/")[2]) {
+          if (n1.data.split("-")[2] < n2.data.split("-")[2]) {
             return 1;
           }
 
           return 0;
         }
-      ).filter(item => Number(item.data.split("/")[1]) === mes)
+      )
+      //.filter(item => Number(item.data.split("-")[1]) === mes)
   }
 
 
