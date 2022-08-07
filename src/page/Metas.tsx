@@ -28,7 +28,7 @@ export const Metas = (): JSX.Element => {
 
   useEffect(() => {
     loadDados()
-  })
+  }, [])
 
   async function loadDados() {
     await api.get("meta", { params: { idCliente: 1 } })
