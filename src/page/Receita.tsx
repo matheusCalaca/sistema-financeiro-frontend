@@ -1,29 +1,59 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../resource/css/Receita.css';
 import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
 import { MdAdd } from 'react-icons/md';
 import ReceitaType from '../model/ReceitaType';
 import DespesaType from '../model/DespesaType';
-import receita from '../data/dataReceita.json';
-import despesa from '../data/dataDespesa.json';
 import DashboardGrafico from '../component/DashboardGrafico';
 import CardReceita from '../component/CardReceita';
 import TableReceita from '../component/TableReceita';
 import MesType from '../model/MesType';
 import meses from '../data/dataMes.json';
 import { Link } from 'react-router-dom';
+import api from '../api/API';
 
 export const dataMes: MesType[] = meses;
 
-export const dataReceita: ReceitaType[] = receita;
-
-export const dataDespesa: DespesaType[] = despesa;
-
-
-
 export const Receita = (): JSX.Element => {
-  const [currentMes, setCurrentMes] = useState<MesType>(dataMes[11]);
+  const [currentMes, setCurrentMes] = useState<MesType>(dataMes[new Date().getMonth()]);
+  const [receitas, setReceitas] = useState<ReceitaType[]>([]);
+  const [despesas, setDespesas] = useState<DespesaType[]>([]);
+
+  useEffect(() => {
+    getCurrentMonth()
+    loadDados()
+  }, [])
+
+  useEffect(() => {
+    loadDados()
+  }, [currentMes])
+
+  async function loadDados() {
+    await api.get("receita", { params: { idCliente: 1, month: currentMes.value  } })
+      .then(response => {
+        setReceitas(response.data)
+        console.log(receitas);
+      })
+      .catch(error => console.log(`receita: ${error}`)
+      ).finally(
+        () => { console.log("finalizado"); }
+      );
+
+      await api.get("despesa", { params: { idCliente: 1, month: currentMes.value  } })
+      .then(response => {
+        setDespesas(response.data)
+        console.log(despesas);
+      })
+      .catch(error => console.log(`despesa: ${error}`)
+      ).finally(
+        () => { console.log("finalizado"); }
+      );
+  }
+
+  function getCurrentMonth(){
+    setCurrentMes(dataMes[new Date().getMonth()]);
+  }
 
   function change(event: React.ChangeEvent<HTMLSelectElement>) {
     event.preventDefault();
@@ -38,7 +68,7 @@ export const Receita = (): JSX.Element => {
   function dados(mes: Number) {
 
 
-    return dataReceita.filter((v, i, a) => onlyUnique(v.id, i, a.map(i => i.id)))
+    return receitas.filter((v, i, a) => onlyUnique(v.id, i, a.map(i => i.id)))
       .sort(
         (n1, n2) => {
           if (n1.data.split("/")[0] > n2.data.split("/")[0]) {
@@ -77,7 +107,7 @@ export const Receita = (): JSX.Element => {
 
           return 0;
         }
-      ).filter(item => Number(item.data.split("/")[1]) === mes)
+      )
   }
 
   return (
@@ -87,7 +117,7 @@ export const Receita = (): JSX.Element => {
         <div className='titleDash'>
           <span>{currentMes.name} 2021</span>
         </div>
-        <DashboardGrafico receita={dataReceita} despesa={despesa} />
+        <DashboardGrafico receita={receitas} despesa={despesas} />
 
         <div className='tableResumo'>
           <div className='tableResumoTitle'>

@@ -5,8 +5,6 @@ import HeaderDash from '../component/HeaderDash';
 import { MdAdd } from 'react-icons/md';
 import ReceitaType from '../model/ReceitaType';
 import DespesaType from '../model/DespesaType';
-import receita from '../data/dataReceita.json';
-import despesa from '../data/dataDespesa.json';
 import DashboardGrafico from '../component/DashboardGrafico';
 import CardDespesa from '../component/CardDespesa';
 import TableDespesa from '../component/TableDespesa';
@@ -17,11 +15,10 @@ import api from '../api/API';
 
 export const dataMes: MesType[] = meses;
 
-export const dataReceita: ReceitaType[] = receita;
-
 export const Despesa = (): JSX.Element => {
   const [currentMes, setCurrentMes] = useState<MesType>(dataMes[new Date().getMonth()]);
-  const [despesas, setDespesas] = useState<DespesaType[]>([])
+  const [receitas, setReceitas] = useState<ReceitaType[]>([]);
+  const [despesas, setDespesas] = useState<DespesaType[]>([]);
 
   useEffect(() => {
     getCurrentMonth()
@@ -39,6 +36,16 @@ export const Despesa = (): JSX.Element => {
         console.log(despesas);
       })
       .catch(error => console.log(`despesa: ${error}`)
+      ).finally(
+        () => { console.log("finalizado"); }
+      );
+
+      await api.get("receita", { params: { idCliente: 1, month: currentMes.value  } })
+      .then(response => {
+        setReceitas(response.data)
+        console.log(receitas);
+      })
+      .catch(error => console.log(`receita: ${error}`)
       ).finally(
         () => { console.log("finalizado"); }
       );
@@ -113,7 +120,7 @@ export const Despesa = (): JSX.Element => {
         <div className='titleDash'>
           <span>{currentMes.name} 2021</span>
         </div>
-        <DashboardGrafico receita={dataReceita} despesa={despesa} />
+        <DashboardGrafico receita={receitas} despesa={despesas} />
 
         <div className='tableResumo'>
           <div className='tableResumoTitle'>

@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../resource/css/Dashboard.css';
 import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
 import DashboardGrafico from '../component/DashboardGrafico';
 
-import receita from '../data/dataReceita.json';
-import despesa from '../data/dataDespesa.json';
 import ReceitaType from '../model/ReceitaType';
 import DespesaType from '../model/DespesaType';
 import DashType from '../model/DashType';
@@ -13,15 +11,13 @@ import CardDash from '../component/CardDash';
 import TableDash from '../component/TableDash';
 import MesType from '../model/MesType';
 import meses from '../data/dataMes.json';
+import api from '../api/API';
 
 export const dataMes: MesType[] = meses;
-export const dataReceita: ReceitaType[] = receita;
-
-export const dataDespesa: DespesaType[] = despesa;
 export let dataDash: DashType[] = [];
 export let id: number = 0;
 
-function dadosDash(mes: Number) {
+function dadosDash(dataReceita: ReceitaType[], dataDespesa: DespesaType[]) {
   id = 0;
   dataDash = [];
 
@@ -39,11 +35,11 @@ function dadosDash(mes: Number) {
   return dataDash
     .sort(
       (n1, n2) => {
-        if (n1.data.split("/")[0] > n2.data.split("/")[0]) {
+        if (n1.data.split("-")[0] > n2.data.split("-")[0]) {
           return -1;
         }
 
-        if (n1.data.split("/")[0] < n2.data.split("/")[0]) {
+        if (n1.data.split("-")[0] < n2.data.split("-")[0]) {
           return 1;
         }
 
@@ -52,11 +48,11 @@ function dadosDash(mes: Number) {
     )
     .sort(
       (n1, n2) => {
-        if (n1.data.split("/")[1] > n2.data.split("/")[1]) {
+        if (n1.data.split("-")[1] > n2.data.split("-")[1]) {
           return -1;
         }
 
-        if (n1.data.split("/")[1] < n2.data.split("/")[1]) {
+        if (n1.data.split("-")[1] < n2.data.split("-")[1]) {
           return 1;
         }
 
@@ -65,22 +61,53 @@ function dadosDash(mes: Number) {
     )
     .sort(
       (n1, n2) => {
-        if (n1.data.split("/")[2] > n2.data.split("/")[2]) {
+        if (n1.data.split("-")[2] > n2.data.split("-")[2]) {
           return -1;
         }
 
-        if (n1.data.split("/")[2] < n2.data.split("/")[2]) {
+        if (n1.data.split("-")[2] < n2.data.split("-")[2]) {
           return 1;
         }
 
         return 0;
       }
-    ).filter(item => Number(item.data.split("/")[1]) === mes)
+    )
 }
 
 export const Dashboard = (): JSX.Element => {
-  const [currentMes, setCurrentMes] = useState<MesType>(dataMes[11]);
+  const [currentMes, setCurrentMes] = useState<MesType>(dataMes[new Date().getMonth()]);
+  const [receitas, setReceitas] = useState<ReceitaType[]>([]);
+  const [despesas, setDespesas] = useState<DespesaType[]>([]);
 
+  useEffect(() => {
+    loadDados()
+  }, [])
+
+  useEffect(() => {
+    loadDados()
+  }, [currentMes])
+
+  async function loadDados() {
+    await api.get("receita", { params: { idCliente: 1, month: currentMes.value  } })
+      .then(response => {
+        setReceitas(response.data)
+        console.log(receitas);
+      })
+      .catch(error => console.log(`receita: ${error}`)
+      ).finally(
+        () => { console.log("finalizado"); }
+      );
+
+      await api.get("despesa", { params: { idCliente: 1, month: currentMes.value  } })
+      .then(response => {
+        setDespesas(response.data)
+        console.log(despesas);
+      })
+      .catch(error => console.log(`despesa: ${error}`)
+      ).finally(
+        () => { console.log("finalizado"); }
+      );
+  }
   function change(event: React.ChangeEvent<HTMLSelectElement>) {
     event.preventDefault();
     setCurrentMes(dataMes[Number(event.target.value) - 1]);
@@ -93,7 +120,7 @@ export const Dashboard = (): JSX.Element => {
         <div className='titleDash'>
           <span>{currentMes.name} 2021</span>
         </div>
-        <DashboardGrafico receita={dataReceita} despesa={despesa} />
+        <DashboardGrafico receita={receitas} despesa={despesas} />
 
         <div className='tableResumo'>
           <div className='tableResumoTitle'>
@@ -105,8 +132,8 @@ export const Dashboard = (): JSX.Element => {
             </select>
           </div>
 
-          <CardDash dataDash={dadosDash(currentMes.value)} />
-          <TableDash dataDash={dadosDash(currentMes.value)} />
+          <CardDash dataDash={dadosDash(receitas, despesas)} />
+          <TableDash dataDash={dadosDash(receitas, despesas)} />
 
         </div>
       </div>

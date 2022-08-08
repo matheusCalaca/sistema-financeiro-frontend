@@ -105,7 +105,6 @@ export const Metas = (): JSX.Element => {
         <div className='titleDash'>
           <span>{(new Date()).getFullYear()}</span>
         </div>
-        <DashboardGrafico receita={dataReceita} despesa={despesa} />
 
         <div className='tableResumo'>
           <div className='tableResumoTitle'>
