@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../resource/css/cadastro.css';
 import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
 import { MdCheck } from 'react-icons/md';
 import api from '../api/API';
+import { useParams } from 'react-router-dom';
 
 export type Receita = {
   data?: number;
@@ -16,6 +17,23 @@ export type Receita = {
 export const ReceitaCadastro = (): JSX.Element => {
 
   const [receitaCurrente, setReceitaCurrente] = useState<Receita>({ idCliente: 1 });
+
+  let { id } = useParams()
+
+  useEffect(() => {
+    getReceita()
+  }, [id]);
+
+  async function getReceita() {
+    await api.get(`receita/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        
+        setReceitaCurrente(res.data);
+      })
+      .catch((err) => console.log(err))
+  }
+
 
 
   function changeInputs(event: React.ChangeEvent<any>) {

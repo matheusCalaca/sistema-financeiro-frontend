@@ -19,6 +19,7 @@ function AppRouter() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/receita" element={<Receita />} />
                 <Route path="/receita/cad" element={<ReceitaCadastro />} />
+                <Route path="/receita/cad/:id" element={<ReceitaCadastro />} />
                 <Route path="/despesa" element={<Despesa />} />
                 <Route path="/despesa/cad/:id" element={<DespesaCadastro />} />
                 <Route path="/despesa/cad" element={<DespesaCadastro />} />
