@@ -3,6 +3,7 @@ import '../resource/css/HeaderDash.css';
 import { MdModeEdit } from 'react-icons/md';
 import DespesaType from '../model/DespesaType';
 import { convertionData } from './Uteis';
+import { Link } from 'react-router-dom';
 
 interface TableDespesaProps {
   despesa: DespesaType[],
@@ -25,7 +26,21 @@ const TableDespesa: FC<TableDespesaProps> = ({ despesa }): JSX.Element => {
                 <th>Categoria</th>
                 <th>Edit</th>
               </tr>
-              {despesa.map((data, i) => <tr key={data.id} className={(i % 2 === 0) ? "backcolorRed" : "backcolorRedLight"}><td>{data.nome}</td><td>{convertionData(data.data)}</td><td>{data.valor} R$</td><td>{data.meioPagamento}</td><td>{data.onde}</td><td>{data.porque}</td><td>{data.categoria}</td><td><MdModeEdit /></td></tr>)}
+              {despesa.map((data, i) => 
+              <tr key={data.id} className={(i % 2 === 0) ? "backcolorRed" : "backcolorRedLight"}>
+              <td>{data.nome}</td>
+              <td>{convertionData(data.data)}</td>
+              <td>{data.valor} R$</td>
+              <td>{data.meioPagamento}</td>
+              <td>{data.onde}</td>
+              <td>{data.porque}</td>
+              <td>{data.categoria}</td>
+              <td>
+              <Link to={`cad/${data.id}`} key={data.id}>
+                <MdModeEdit />
+              </Link>
+              </td>
+              </tr>)}
 
             </table>
           </div>

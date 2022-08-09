@@ -20,6 +20,7 @@ function AppRouter() {
                 <Route path="/receita" element={<Receita />} />
                 <Route path="/receita/cad" element={<ReceitaCadastro />} />
                 <Route path="/despesa" element={<Despesa />} />
+                <Route path="/despesa/cad/:id" element={<DespesaCadastro />} />
                 <Route path="/despesa/cad" element={<DespesaCadastro />} />
                 <Route path="/meta" element={<Metas />} />
                 <Route path="/meta/cad" element={<MetasCadastro />} />

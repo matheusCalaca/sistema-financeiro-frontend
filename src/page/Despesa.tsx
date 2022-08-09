@@ -10,7 +10,7 @@ import CardDespesa from '../component/CardDespesa';
 import TableDespesa from '../component/TableDespesa';
 import MesType from '../model/MesType';
 import meses from '../data/dataMes.json';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import api from '../api/API';
 
 export const dataMes: MesType[] = meses;
@@ -19,6 +19,8 @@ export const Despesa = (): JSX.Element => {
   const [currentMes, setCurrentMes] = useState<MesType>(dataMes[new Date().getMonth()]);
   const [receitas, setReceitas] = useState<ReceitaType[]>([]);
   const [despesas, setDespesas] = useState<DespesaType[]>([]);
+
+  let { id } = useParams();
 
   useEffect(() => {
     getCurrentMonth()
@@ -124,7 +126,7 @@ export const Despesa = (): JSX.Element => {
 
         <div className='tableResumo'>
           <div className='tableResumoTitle'>
-            <span>Despesa</span>
+            <span>Despesa {id}</span> 
 
             <select value={currentMes.value} onChange={change}>
               <option>Escolha o mês</option>

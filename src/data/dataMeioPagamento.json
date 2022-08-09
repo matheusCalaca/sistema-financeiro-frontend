@@ -1,27 +1,22 @@
 [
     {
         "name": "Cartão Crédito",
-        "value": "CREDITO",
-        "id": 1
+        "value": "CREDITO"
     },
     {
         "name": "Cartão Debito",
-        "value": "DEBITO",
-        "id": 2
+        "value": "DEBITO"
     },
     {
         "name": "Boleto",
-        "value": "BOLETO",
-        "id": 3
+        "value": "BOLETO"
     },
     {
         "name": "Dinheiro",
-        "value": "DINHEIRO",
-        "id": 4
+        "value": "DINHEIRO"
     },
     {
         "name": "PIX",
-        "value": "PIX",
-        "id": 5
+        "value": "PIX"
     }
 ]
