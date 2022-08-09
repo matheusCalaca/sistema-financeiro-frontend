@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../resource/css/cadastro.css';
 import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
-import { MdCheck } from 'react-icons/md';
+import { MdCheck, MdDelete } from 'react-icons/md';
 import OptionType from '../model/OptionType';
 import meioPagamento from '../data/dataMeioPagamento.json'
 import category from '../data/dataCategoria.json'
@@ -90,8 +90,9 @@ export const DespesaCadastro = (): JSX.Element => {
     return i;
   }
 
-
-
+  function excluir() {
+    api.delete(`despesa\\${id}`).then((res) => console.log(res)).catch((err) => console.log(err))
+  }
 
   return (
     <>
@@ -145,8 +146,11 @@ export const DespesaCadastro = (): JSX.Element => {
         </div>
       </div>
 
-      <div className="butoonFloatCad">
-        <MdCheck onClick={cadastro} />
+      <div className="butoonFloatPosition">
+         {id != null ? <div className="butoonFloatDelete"><MdDelete onClick={excluir} /></div> : null}
+        <div className="butoonFloatCad">
+          <MdCheck onClick={cadastro} />
+        </div>
       </div>
 
       <Footer />

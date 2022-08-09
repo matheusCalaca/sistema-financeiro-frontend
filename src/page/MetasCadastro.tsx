@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../resource/css/cadastro.css';
 import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
-import { MdCheck } from 'react-icons/md';
+import { MdCheck, MdDelete } from 'react-icons/md';
 import api from '../api/API';
 import { useParams } from 'react-router-dom';
 
@@ -28,7 +28,7 @@ export const MetasCadastro = (): JSX.Element => {
     await api.get(`meta/${id}`)
       .then((res) => {
         console.log(res.data);
-        
+
         setMetaCurrente(res.data);
       })
       .catch((err) => console.log(err))
@@ -45,6 +45,10 @@ export const MetasCadastro = (): JSX.Element => {
 
   function cadastro() {
     api.post("meta", metaCurrente).then((res) => console.log(res)).catch((err) => console.log(err))
+  }
+
+  function excluir() {
+    api.delete(`meta\\${id}`).then((res) => console.log(res)).catch((err) => console.log(err))
   }
 
   return (
@@ -77,8 +81,11 @@ export const MetasCadastro = (): JSX.Element => {
         </div>
       </div>
 
-      <div className="butoonFloatCad">
-        <MdCheck onClick={cadastro} />
+      <div className="butoonFloatPosition">
+         {id != null ? <div className="butoonFloatDelete"><MdDelete onClick={excluir} /></div> : null}
+        <div className="butoonFloatCad">
+          <MdCheck onClick={cadastro} />
+        </div>
       </div>
 
       <Footer />
