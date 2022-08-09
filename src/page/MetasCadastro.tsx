@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import '../resource/css/cadastro.css';
 import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
 import { MdCheck } from 'react-icons/md';
 import api from '../api/API';
+import { useParams } from 'react-router-dom';
 
 export type Meta = {
   data?: number;
@@ -15,7 +16,23 @@ export type Meta = {
 
 export const MetasCadastro = (): JSX.Element => {
 
-  const [metaCurrente, setMetaCurrente] = useState<Meta>({idCliente: 1});
+  const [metaCurrente, setMetaCurrente] = useState<Meta>({ idCliente: 1 });
+
+  let { id } = useParams()
+
+  useEffect(() => {
+    getMeta()
+  }, [id]);
+
+  async function getMeta() {
+    await api.get(`meta/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        
+        setMetaCurrente(res.data);
+      })
+      .catch((err) => console.log(err))
+  }
 
 
   function changeMetaInputs(event: React.ChangeEvent<any>) {
@@ -61,7 +78,7 @@ export const MetasCadastro = (): JSX.Element => {
       </div>
 
       <div className="butoonFloatCad">
-        <MdCheck onClick={cadastro}/>
+        <MdCheck onClick={cadastro} />
       </div>
 
       <Footer />

@@ -24,6 +24,7 @@ function AppRouter() {
                 <Route path="/despesa/cad" element={<DespesaCadastro />} />
                 <Route path="/meta" element={<Metas />} />
                 <Route path="/meta/cad" element={<MetasCadastro />} />
+                <Route path="/meta/cad/:id" element={<MetasCadastro />} />
             </Routes>
         </BrowserRouter>
     );
