@@ -4,7 +4,7 @@ import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
 import { MdCheck, MdDelete } from 'react-icons/md';
 import api from '../api/API';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 export type Receita = {
   data?: number;
@@ -17,6 +17,7 @@ export type Receita = {
 export const ReceitaCadastro = (): JSX.Element => {
 
   const [receitaCurrente, setReceitaCurrente] = useState<Receita>({ idCliente: 1 });
+  const [isRedirect, setIsRedirect] = useState<boolean>(false);
 
   let { id } = useParams()
 
@@ -45,11 +46,16 @@ export const ReceitaCadastro = (): JSX.Element => {
   }
 
   function cadastro() {
-    api.post("receita", receitaCurrente).then((res) => console.log(res)).catch((err) => console.log(err))
+    api.post("receita", receitaCurrente).then((res) => {console.log(res.data);setIsRedirect(true)}).catch((err) => console.log(err))
   }
 
   function excluir() {
-    api.delete(`receita\\${id}`).then((res) => console.log(res)).catch((err) => console.log(err))
+    api.delete(`receita\\${id}`)
+    .then((res) => {
+      let resposta: boolean = res.data;
+      setIsRedirect(resposta)
+    })
+    .catch((err) => console.log(err))
   }
 
 
@@ -85,6 +91,7 @@ export const ReceitaCadastro = (): JSX.Element => {
 
       <div className="butoonFloatPosition">
         {id != null ? <div className="butoonFloatDelete"><MdDelete onClick={excluir} /></div> : null}
+        {isRedirect ? <Navigate to="/receita" /> : null}
         <div className="butoonFloatCad">
           <MdCheck onClick={cadastro} />
         </div>

@@ -7,7 +7,7 @@ import OptionType from '../model/OptionType';
 import meioPagamento from '../data/dataMeioPagamento.json'
 import category from '../data/dataCategoria.json'
 import api from '../api/API';
-import { useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 
 export const dataMeioPagamento: OptionType[] = meioPagamento;
 export const dataCategory: OptionType[] = category;
@@ -28,6 +28,7 @@ export type Despesa = {
 export const DespesaCadastro = (): JSX.Element => {
   const [currentMeioPagamento, setCurrentMeioPagamento] = useState<OptionType>();
   const [currentCategory, setCurrentCategory] = useState<OptionType>();
+  const [isRedirect, setIsRedirect] = useState<boolean>(false);
   const [despesaCurrente, setDespesaCurrente] = useState<Despesa>({ idCliente: 1 });
 
   let { id } = useParams()
@@ -40,7 +41,7 @@ export const DespesaCadastro = (): JSX.Element => {
     setCurrentMeioPagamento(dataMeioPagamento[Number(returnIndexMeioDePagamentos())]);
     console.log("categoria");
     console.log(returnIndexCategoria());
-    
+
     // setDespesaCurrente(dataCategory[returnIndexCategoria()]);
   }, [despesaCurrente])
 
@@ -65,7 +66,7 @@ export const DespesaCadastro = (): JSX.Element => {
   }
 
   function cadastro() {
-    api.post("despesa", despesaCurrente).then((res) => console.log(res)).catch((err) => console.log(err))
+    api.post("despesa", despesaCurrente).then((res) => { console.log(res.data); setIsRedirect(true) }).catch((err) => console.log(err))
   }
 
   async function getDespesa() {
@@ -90,8 +91,15 @@ export const DespesaCadastro = (): JSX.Element => {
     return i;
   }
 
+
+
   function excluir() {
-    api.delete(`despesa\\${id}`).then((res) => console.log(res)).catch((err) => console.log(err))
+    api.delete(`despesa\\${id}`)
+      .then((res) => {
+        let resposta: boolean = res.data;
+        setIsRedirect(resposta)
+      })
+      .catch((err) => console.log(err))
   }
 
   return (
@@ -147,11 +155,13 @@ export const DespesaCadastro = (): JSX.Element => {
       </div>
 
       <div className="butoonFloatPosition">
-         {id != null ? <div className="butoonFloatDelete"><MdDelete onClick={excluir} /></div> : null}
+        {id != null ? <div className="butoonFloatDelete"><MdDelete onClick={excluir} /></div> : null}
+        {isRedirect ? <Navigate to="/despesa" /> : null}
         <div className="butoonFloatCad">
           <MdCheck onClick={cadastro} />
         </div>
       </div>
+
 
       <Footer />
     </>
