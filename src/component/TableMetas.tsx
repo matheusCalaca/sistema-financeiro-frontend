@@ -2,8 +2,9 @@ import React, { FC } from 'react';
 import '../resource/css/HeaderDash.css';
 import MetasType from '../model/MetasType';
 import { convertionData } from './Uteis';
-import { Link } from 'react-router-dom';
+import { useNavigate, Navigate } from 'react-router-dom';
 import { MdModeEdit } from 'react-icons/md';
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 
 interface TableReceitaProps {
   metas: MetasType[],
@@ -12,33 +13,63 @@ interface TableReceitaProps {
 
 export const TableMetas: FC<TableReceitaProps> = ({ metas }): JSX.Element => {
 
-    return (
+  const navegate = useNavigate();
+
+  interface Column {
+    id: 'titulo' | 'descricao' | 'valor' | 'data';
+    label: string;
+    minWidth?: number;
+    align?: 'right';
+  }
+
+  const columns: readonly Column[] = [
+    { id: 'titulo', label: 'Título', minWidth: 100 },
+    { id: 'descricao', label: 'Descrição', minWidth: 200 },
+    {
+      id: 'valor',
+      label: 'Valor',
+      minWidth: 100
+    },
+    {
+      id: 'data',
+      label: 'Data',
+      minWidth: 100
+    }
+  ];
+
+  return (
     <>
 
       <div className='tableName'>
-        <table>
-          <tr>
-            <th>Titulo</th>
-            <th>descrição</th>
-            <th>Valor</th>
-            <th>data</th>
-            <th>Edit</th>
-          </tr>
-          {metas.map((data, i) => <tr key={data.id}>
-            <td>{data.titulo}</td>
-            <td>{data.descricao}</td>
-            <td>    <span>{data.valor}</span>    <span>R$</span></td>
-            <td>{convertionData(data.data)}</td>
-            <td>
-              <Link to={`cad/${data.id}`} key={data.id}>
-                <MdModeEdit />
-              </Link>
-            </td>
-          </tr>)}
+        <Table>
+          <TableHead>
+            <TableRow>
+              {columns.map((column) => (
+                <TableCell
+                  key={column.id}
+                  align={column.align}
+                  style={{ minWidth: column.minWidth }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {
+              metas.map((data) =>
+                <TableRow key={data.id} hover={true} onClick={() => navegate(`cad/${data.id}`) }>
+                  <TableCell key="titulo">{data.titulo}</TableCell>
+                  <TableCell key="descricao">{data.descricao}</TableCell>
+                  <TableCell key="valor" align="center">    <span>{data.valor}</span>    <span>R$</span></TableCell>
+                  <TableCell key="data" align="center">{convertionData(data.data)}</TableCell>
+                </TableRow>
+              )
+            }
+          </TableBody>
 
 
-
-        </table>
+        </Table>
       </div>
 
     </>

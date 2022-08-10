@@ -4,7 +4,7 @@ import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
 import { MdCheck, MdDelete } from 'react-icons/md';
 import api from '../api/API';
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 
 export type Meta = {
   data?: number;
@@ -17,7 +17,7 @@ export type Meta = {
 export const MetasCadastro = (): JSX.Element => {
 
   const [metaCurrente, setMetaCurrente] = useState<Meta>({ idCliente: 1 });
-  const [isRedirect, setIsRedirect] = useState<boolean>(false);
+  const navegate = useNavigate();
 
   let { id } = useParams()
 
@@ -45,16 +45,15 @@ export const MetasCadastro = (): JSX.Element => {
   }
 
   function cadastro() {
-    api.post("meta", metaCurrente).then((res) => {console.log(res.data);setIsRedirect(true)}).catch((err) => console.log(err))
+    api.post("meta", metaCurrente).then((res) => { console.log(res.data); navegate("/meta") }).catch((err) => console.log(err))
   }
 
   function excluir() {
     api.delete(`meta\\${id}`)
-    .then((res) => {
-      let resposta: boolean = res.data;
-      setIsRedirect(resposta)
-    })
-    .catch((err) => console.log(err))
+      .then((res) => {
+        navegate("/meta")
+      })
+      .catch((err) => console.log(err))
   }
 
   return (
@@ -88,8 +87,7 @@ export const MetasCadastro = (): JSX.Element => {
       </div>
 
       <div className="butoonFloatPosition">
-         {id != null ? <div className="butoonFloatDelete"><MdDelete onClick={excluir} /></div> : null}
-         {isRedirect ? <Navigate to="/meta" /> : null}
+        {id != null ? <div className="butoonFloatDelete"><MdDelete onClick={excluir} /></div> : null}
         <div className="butoonFloatCad">
           <MdCheck onClick={cadastro} />
         </div>
