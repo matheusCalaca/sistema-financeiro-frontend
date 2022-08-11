@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import '../resource/css/HeaderDash.css';
 import MetasType from '../model/MetasType';
-import { convertionData } from './Uteis';
+import { convertData, convertMoney } from './Uteis';
 import { useNavigate, Navigate } from 'react-router-dom';
 import { MdModeEdit } from 'react-icons/md';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
@@ -58,11 +58,11 @@ export const TableMetas: FC<TableReceitaProps> = ({ metas }): JSX.Element => {
           <TableBody>
             {
               metas.map((data) =>
-                <TableRow key={data.id} hover={true} onClick={() => navegate(`cad/${data.id}`) }>
+                <TableRow key={data.id} hover={true} onClick={() => navegate(`cad/${data.id}`)}>
                   <TableCell key="titulo">{data.titulo}</TableCell>
                   <TableCell key="descricao">{data.descricao}</TableCell>
-                  <TableCell key="valor" align="center">    <span>{data.valor}</span>    <span>R$</span></TableCell>
-                  <TableCell key="data" align="center">{convertionData(data.data)}</TableCell>
+                  <TableCell key="valor" align="center">{convertMoney(data.valor.toString())}</TableCell>
+                  <TableCell key="data" align="center">{convertData(data.data)}</TableCell>
                 </TableRow>
               )
             }

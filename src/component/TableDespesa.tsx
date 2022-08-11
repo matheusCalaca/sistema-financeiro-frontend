@@ -2,7 +2,7 @@ import React, { FC } from 'react';
 import '../resource/css/HeaderDash.css';
 import { MdModeEdit } from 'react-icons/md';
 import DespesaType from '../model/DespesaType';
-import { convertionData } from './Uteis';
+import { convertData } from './Uteis';
 import { Link } from 'react-router-dom';
 
 interface TableDespesaProps {
@@ -29,7 +29,7 @@ const TableDespesa: FC<TableDespesaProps> = ({ despesa }): JSX.Element => {
               {despesa.map((data, i) => 
               <tr key={data.id} className={(i % 2 === 0) ? "backcolorRed" : "backcolorRedLight"}>
               <td>{data.nome}</td>
-              <td>{convertionData(data.data)}</td>
+              <td>{convertData(data.data)}</td>
               <td>{data.valor} R$</td>
               <td>{data.meioPagamento}</td>
               <td>{data.onde}</td>
