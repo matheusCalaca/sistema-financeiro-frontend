@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 import '../resource/css/Receita.css';
 import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
-import { MdAdd } from 'react-icons/md';
 import ReceitaType from '../model/ReceitaType';
 import DespesaType from '../model/DespesaType';
 import receita from '../data/dataReceita.json';
 import despesa from '../data/dataDespesa.json';
-import DashboardGrafico from '../component/DashboardGrafico';
 import MesType from '../model/MesType';
 import meses from '../data/dataMes.json';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { CardMetas } from '../component/CardMetas';
 import MetasType from '../model/MetasType';
 import { TableMetas } from '../component/TableMetas';
 import api from '../api/API';
+import { Box, SpeedDial, SpeedDialIcon } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
 
 export const dataMes: MesType[] = meses;
 
@@ -25,6 +25,7 @@ export const dataDespesa: DespesaType[] = despesa;
 export const Metas = (): JSX.Element => {
 
   const [metas, setMetas] = useState<MetasType[]>([])
+  const navegate = useNavigate();
 
   useEffect(() => {
     loadDados()
@@ -117,12 +118,18 @@ export const Metas = (): JSX.Element => {
 
         </div>
       </div>
-
-      <Link to="cad">
-        <div className="butoonFloat">
-          <MdAdd />
-        </div>
-      </Link>
+      <div className="butoonFloatPosition">
+        <Box sx={{ height: 320, transform: 'translateZ(0px)', flexGrow: 1 }}>
+          <Link to="cad">
+            <SpeedDial
+              ariaLabel="SpeedDial openIcon example"
+              sx={{ position: 'absolute', bottom: 16, right: 16 }}
+              icon={<SpeedDialIcon icon={<AddIcon />} openIcon={<AddIcon />} />}
+            >
+            </SpeedDial>
+          </Link>
+        </Box>
+      </div>
       <Footer />
     </>
   );

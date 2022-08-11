@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import '../resource/css/cadastro.css';
 import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
-import { MdCheck, MdDelete } from 'react-icons/md';
 import api from '../api/API';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { Box, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
+import SaveIcon from '@mui/icons-material/Save';
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export type Meta = {
   data?: number;
@@ -48,6 +50,10 @@ export const MetasCadastro = (): JSX.Element => {
     api.post("meta", metaCurrente).then((res) => { console.log(res.data); navegate("/meta") }).catch((err) => console.log(err))
   }
 
+  function update() {
+    api.put("meta", metaCurrente).then((res) => { console.log(res.data); navegate("/meta") }).catch((err) => console.log(err))
+  }
+
   function excluir() {
     api.delete(`meta\\${id}`)
       .then((res) => {
@@ -87,10 +93,26 @@ export const MetasCadastro = (): JSX.Element => {
       </div>
 
       <div className="butoonFloatPosition">
-        {id != null ? <div className="butoonFloatDelete"><MdDelete onClick={excluir} /></div> : null}
-        <div className="butoonFloatCad">
-          <MdCheck onClick={cadastro} />
-        </div>
+        <Box sx={{ height: 320, transform: 'translateZ(0px)', flexGrow: 1 }}>
+          <SpeedDial
+            ariaLabel="SpeedDial openIcon example"
+            sx={{ position: 'absolute', bottom: 16, right: 16 }}
+            icon={<SpeedDialIcon icon={<SaveIcon />}
+              onClick={id ? update : cadastro}
+            />
+            }
+          >
+            {id != null ?
+              <SpeedDialAction
+                key="deletar"
+                icon={<DeleteIcon />}
+                tooltipTitle="Deletar"
+                onClick={excluir}
+                sx={{ transform: 'translateZ(0px)', flexGrow: 1, color: "red" }}
+              />
+              : null}
+          </SpeedDial>
+        </Box>
       </div>
 
       <Footer />
