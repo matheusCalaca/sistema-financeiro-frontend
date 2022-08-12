@@ -3,7 +3,6 @@ import '../resource/css/HeaderDash.css';
 import MetasType from '../model/MetasType';
 import { convertData, convertMoney } from './Uteis';
 import { useNavigate, Navigate } from 'react-router-dom';
-import { MdModeEdit } from 'react-icons/md';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 
 interface TableReceitaProps {
@@ -39,7 +38,6 @@ export const TableMetas: FC<TableReceitaProps> = ({ metas }): JSX.Element => {
 
   return (
     <>
-
       <div className='tableName'>
         <Table>
           <TableHead>
@@ -67,11 +65,8 @@ export const TableMetas: FC<TableReceitaProps> = ({ metas }): JSX.Element => {
               )
             }
           </TableBody>
-
-
         </Table>
       </div>
-
     </>
   );
 }

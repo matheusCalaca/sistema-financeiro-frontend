@@ -7,6 +7,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Box, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 import DeleteIcon from '@mui/icons-material/Delete';
+import AddIcon from '@mui/icons-material/Add';
 
 export type Meta = {
   data?: number;
@@ -97,11 +98,17 @@ export const MetasCadastro = (): JSX.Element => {
           <SpeedDial
             ariaLabel="SpeedDial openIcon example"
             sx={{ position: 'absolute', bottom: 16, right: 16 }}
-            icon={<SpeedDialIcon icon={<SaveIcon />}
-              onClick={id ? update : cadastro}
-            />
-            }
+            icon={<SpeedDialIcon icon={<AddIcon />} />}
           >
+
+            < SpeedDialAction
+              key="save"
+              icon={< SaveIcon />}
+              tooltipTitle="Savar"
+              onClick={id ? update : cadastro}
+              sx={{ transform: 'translateZ(0px)', flexGrow: 1 }}
+            />
+
             {id != null ?
               <SpeedDialAction
                 key="deletar"
