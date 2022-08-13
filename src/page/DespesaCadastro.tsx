@@ -8,13 +8,14 @@ import meioPagamento from '../data/dataMeioPagamento.json'
 import category from '../data/dataCategoria.json'
 import api from '../api/API';
 import { Navigate, useParams } from 'react-router-dom';
+import { convertSetDate } from '../component/Uteis';
 
 export const dataMeioPagamento: OptionType[] = meioPagamento;
 export const dataCategory: OptionType[] = category;
 
 export type Despesa = {
   id?: number;
-  data?: number;
+  data?: string;
   descricao?: string;
   idCliente?: number;
   idCategoria?: number;
@@ -150,7 +151,7 @@ export const DespesaCadastro = (): JSX.Element => {
         </div>
         <div className='fieldCad'>
           <div className='labelCad'><b>Data:</b></div>
-          <div className='inputCad'><input type="date" name="data" value={despesaCurrente.data} onChange={changeInputs} /></div>
+          <div className='inputCad'><input type="date" name="data" value={convertSetDate(despesaCurrente.data)} onChange={changeInputs} /></div>
         </div>
       </div>
 

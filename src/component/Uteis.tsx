@@ -8,6 +8,16 @@ export const convertMoney = (valor: string): string => {
   return hasDot ? `${espacamentoMoney(valor.split('.')[0])},${valor.split('.')[1]} R$` : `${espacamentoMoney(valor)},00 R$`
 }
 
+
+export const convertSetDate = (date?: string): string => {
+  if (date) {
+    return date.split("T")[0]
+  }
+
+  return ""
+}
+
+
 function espacamentoMoney(valor: string): string {
   let tamanho = valor.length
   valor = reverseString(valor);

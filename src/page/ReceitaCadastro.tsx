@@ -5,9 +5,10 @@ import HeaderDash from '../component/HeaderDash';
 import { MdCheck, MdDelete } from 'react-icons/md';
 import api from '../api/API';
 import { Navigate, useParams } from 'react-router-dom';
+import { convertSetDate } from '../component/Uteis';
 
 export type Receita = {
-  data?: number;
+  data?: string;
   descricao?: string;
   idCliente?: number;
   nome?: string;
@@ -85,7 +86,7 @@ export const ReceitaCadastro = (): JSX.Element => {
         </div>
         <div className='fieldCad'>
           <div className='labelCad'><b>Data:</b></div>
-          <div className='inputCad'><input type="date" name="data" value={receitaCurrente.data} onChange={changeInputs} /></div>
+          <div className='inputCad'><input type="date" name="data" value={convertSetDate(receitaCurrente.data)} onChange={changeInputs} /></div>
         </div>
       </div>
 

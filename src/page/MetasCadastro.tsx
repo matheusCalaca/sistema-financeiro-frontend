@@ -9,9 +9,10 @@ import SaveIcon from '@mui/icons-material/Save';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { isMobile } from 'react-device-detect';
+import { convertSetDate } from '../component/Uteis';
 
 export type Meta = {
-  data?: number;
+  data?: string;
   descricao?: string;
   idCliente?: number;
   titulo?: string;
@@ -34,8 +35,6 @@ export const MetasCadastro = (): JSX.Element => {
   async function getMeta() {
     await api.get(`meta/${id}`)
       .then((res) => {
-        console.log(res.data);
-
         setMetaCurrente(res.data);
       })
       .catch((err) => console.log(err))
@@ -46,8 +45,6 @@ export const MetasCadastro = (): JSX.Element => {
     event.preventDefault();
     const { name, value } = event.target;
     setMetaCurrente({ ...metaCurrente, [name]: value });
-    console.log(metaCurrente);
-
   }
 
   function valid() {
@@ -180,7 +177,7 @@ export const MetasCadastro = (): JSX.Element => {
         </div>
         <div className='fieldCad'>
           <div className='labelCad'><b>Data:</b></div>
-          <div className='inputCad'><input type="date" name="data" value={metaCurrente.data} onChange={changeMetaInputs} /></div>
+          <div className='inputCad'><input type="date" name="data" value={convertSetDate(metaCurrente.data)} onChange={changeMetaInputs} /></div>
         </div>
       </div>
 
