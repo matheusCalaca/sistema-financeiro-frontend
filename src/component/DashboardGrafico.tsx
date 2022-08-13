@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
 import '../resource/css/DashGrafico.css';
 import Chart from 'react-google-charts';
-
-
 import ReceitaType from '../model/ReceitaType';
 import DespesaType from '../model/DespesaType';
+import { convertMoney } from './Uteis';
 
 interface DashGraficoProps {
   receita: ReceitaType[],
@@ -37,8 +36,8 @@ const DashboardGrafico: FC<DashGraficoProps> = ({ receita, despesa }): JSX.Eleme
 
   const data = [
     ["Title", "Value"],
-    ["receita", somaDespesa()],
-    ["gasto", somaReceita()],
+    ["receita", somaReceita()],
+    ["gasto", somaDespesa()],
   ];
 
 
@@ -55,10 +54,10 @@ const DashboardGrafico: FC<DashGraficoProps> = ({ receita, despesa }): JSX.Eleme
         </div>
         <div className='dadosFinanceiro'>
           <div className='titleSaldo'>
-            <div>Saldo: </div> <div>{(somaReceita() - somaDespesa())}</div> <div>R$</div>
+            <div>Saldo: </div> <div><b>{convertMoney((somaReceita() - somaDespesa()).toString())}</b></div>
           </div>
           <div className='resumoFinanceiro'>
-            <span>Receita: </span> <span className='colorGreen'>{somaReceita()}</span> <span>/</span> <span>Despesa:</span> <span className='colorRed'>{somaDespesa()}</span> <span>R$</span>
+            <span>Receita: </span> <span className='colorGreen'><b>{convertMoney(somaReceita().toString())}</b></span> <span>/</span> <span>Despesa:</span> <span className='colorRed'><b>{convertMoney(somaDespesa().toString())}</b></span> 
           </div>
         </div>
       </div>

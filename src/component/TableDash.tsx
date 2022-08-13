@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import '../resource/css/HeaderDash.css';
-import { MdModeEdit } from 'react-icons/md';
 import DashType from '../model/DashType';
-import { convertData } from './Uteis';
+import { convertData, convertMoney } from './Uteis';
+import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 
 interface TableDashProps {
   dataDash: DashType[],
@@ -10,20 +10,58 @@ interface TableDashProps {
 
 
 const TableDash: FC<TableDashProps> = ({ dataDash }): JSX.Element => {
+
+  interface Column {
+    id: 'titulo' | 'valor' | 'data';
+    label: string;
+    minWidth?: number;
+    align?: 'right';
+  }
+
+  const columns: readonly Column[] = [
+    { id: 'titulo', label: 'Título', minWidth: 100 },
+    {
+      id: 'valor',
+      label: 'Valor',
+      minWidth: 100
+    },
+    {
+      id: 'data',
+      label: 'Data',
+      minWidth: 100
+    }
+  ];
+
+
+
   return (
     <>
 
       <div className='tableName'>
-        <table>
-          <tr>
-            <th>Nome</th>
-            <th>Valor</th>
-            <th>Data</th>
-            <th>Edit</th>
-          </tr>
-          {dataDash.map((item, i) => <tr className={item.type ? ((i % 2 === 0) ? "backcolorGreen" : "backcolorGreenLight") : ((i % 2 === 0) ? "backcolorRed" : "backcolorRedLight")}> <td>{item.nome}</td><td><span>{item.valor}</span><span>R$</span></td> <td>{convertData(item.data)}</td><td><MdModeEdit /></td></tr>)}
-
-        </table>
+        <Table>
+          <TableHead>
+            <TableRow>
+              {columns.map((column) => (
+                <TableCell
+                  key={column.id}
+                  align={column.align}
+                  style={{ minWidth: column.minWidth }}
+                >
+                  {column.label}
+                </TableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {dataDash.map((item, i) =>
+              <TableRow key={i} className={item.type ? ((i % 2 === 0) ? "backcolorGreen" : "backcolorGreenLight") : ((i % 2 === 0) ? "backcolorRed" : "backcolorRedLight")}>
+                <TableCell>{item.nome}</TableCell>
+                <TableCell>{convertMoney(item.valor.toString())}</TableCell>
+                <TableCell>{convertData(item.data)}</TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
       </div>
     </>
   );

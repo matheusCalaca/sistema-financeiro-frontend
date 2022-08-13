@@ -1,9 +1,8 @@
 import React, { FC } from 'react';
 import '../resource/css/HeaderDash.css';
-import { MdModeEdit } from 'react-icons/md';
 import ReceitaType from '../model/ReceitaType';
 import { convertData, convertMoney } from './Uteis';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 
 interface TableReceitaProps {
