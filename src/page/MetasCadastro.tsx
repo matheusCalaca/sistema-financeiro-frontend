@@ -4,7 +4,7 @@ import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
 import api from '../api/API';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Alert, Box, Snackbar, SnackbarOrigin, SpeedDial, SpeedDialAction, SpeedDialIcon } from '@mui/material';
+import { Alert, Box, InputAdornment, Snackbar, SnackbarOrigin, SpeedDial, SpeedDialAction, SpeedDialIcon, TextField } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
@@ -106,7 +106,7 @@ export const MetasCadastro = (): JSX.Element => {
       <SpeedDial
         ariaLabel="SpeedDial openIcon example"
         sx={{ position: 'absolute', bottom: 16, right: 16 }}
-        icon={<SpeedDialIcon icon={<AddIcon />} />}
+        icon={<SpeedDialIcon icon={<SaveIcon />} />}
         onClick={id ? update : cadastro}
       >
         {id != null ?
@@ -165,19 +165,23 @@ export const MetasCadastro = (): JSX.Element => {
       <div className='formCad'>
         <div className='fieldCad'>
           <div className='labelCad'><b>titulo:</b></div>
-          <div className='inputCad'><input type="text" name="titulo" value={metaCurrente.titulo} onChange={changeMetaInputs} /></div>
+          <div className='inputCad'><TextField fullWidth type="text" id="titulo" name="titulo" value={metaCurrente.titulo} onChange={changeMetaInputs} /></div>
         </div>
         <div className='fieldCad'>
           <div className='labelCad'><b>Valor:</b></div>
-          <div className='inputCad'><input type="number" name="valor" value={metaCurrente.valor} onChange={changeMetaInputs} /></div>
+          <div className='inputCad'><TextField type="number" fullWidth id="valor" name="valor" value={metaCurrente.valor} onChange={changeMetaInputs} InputProps={{
+            startAdornment: <InputAdornment position="start">R$</InputAdornment>,
+          }} /></div>
         </div>
         <div className='fieldCad'>
           <div className='labelCad'><b>Descrição:</b></div>
-          <div className='inputCad'><textarea name="descricao" value={metaCurrente.descricao} onChange={changeMetaInputs} /></div>
+          <div className='inputCad'><TextField multiline fullWidth maxRows={4} id="descricao" name="descricao" value={metaCurrente.descricao} onChange={changeMetaInputs} /></div>
         </div>
         <div className='fieldCad'>
           <div className='labelCad'><b>Data:</b></div>
-          <div className='inputCad'><input type="date" name="data" value={convertSetDate(metaCurrente.data)} onChange={changeMetaInputs} /></div>
+          <div className='inputCad'>
+
+            <TextField fullWidth type="date" id="data" name="data" value={convertSetDate(metaCurrente.data)} onChange={changeMetaInputs} /></div>
         </div>
       </div>
 
