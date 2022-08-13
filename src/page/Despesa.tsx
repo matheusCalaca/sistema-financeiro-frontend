@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../resource/css/Receita.css';
 import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
-import { MdAdd } from 'react-icons/md';
+import AddIcon from '@mui/icons-material/Add';
 import ReceitaType from '../model/ReceitaType';
 import DespesaType from '../model/DespesaType';
 import DashboardGrafico from '../component/DashboardGrafico';
@@ -12,6 +12,7 @@ import MesType from '../model/MesType';
 import meses from '../data/dataMes.json';
 import { Link, useParams } from 'react-router-dom';
 import api from '../api/API';
+import { Box, SpeedDial, SpeedDialIcon } from '@mui/material';
 
 export const dataMes: MesType[] = meses;
 
@@ -32,7 +33,7 @@ export const Despesa = (): JSX.Element => {
   }, [currentMes])
 
   async function loadDados() {
-    await api.get("despesa", { params: { idCliente: 1, month: currentMes.value  } })
+    await api.get("despesa", { params: { idCliente: 1, month: currentMes.value } })
       .then(response => {
         setDespesas(response.data)
         console.log(despesas);
@@ -42,7 +43,7 @@ export const Despesa = (): JSX.Element => {
         () => { console.log("finalizado"); }
       );
 
-      await api.get("receita", { params: { idCliente: 1, month: currentMes.value  } })
+    await api.get("receita", { params: { idCliente: 1, month: currentMes.value } })
       .then(response => {
         setReceitas(response.data)
         console.log(receitas);
@@ -63,7 +64,7 @@ export const Despesa = (): JSX.Element => {
     return self.indexOf(value) === index;
   }
 
-  function getCurrentMonth(){
+  function getCurrentMonth() {
     setCurrentMes(dataMes[new Date().getMonth()]);
   }
 
@@ -110,7 +111,7 @@ export const Despesa = (): JSX.Element => {
           return 0;
         }
       )
-      //.filter(item => Number(item.data.split("-")[1]) === mes)
+    //.filter(item => Number(item.data.split("-")[1]) === mes)
   }
 
 
@@ -126,7 +127,7 @@ export const Despesa = (): JSX.Element => {
 
         <div className='tableResumo'>
           <div className='tableResumoTitle'>
-            <span>Despesa {id}</span> 
+            <span>Despesa {id}</span>
 
             <select value={currentMes.value} onChange={change}>
               <option>Escolha o mês</option>
@@ -139,11 +140,18 @@ export const Despesa = (): JSX.Element => {
 
         </div>
       </div>
-      <Link to="cad">
-        <div className="butoonFloat">
-          <MdAdd />
-        </div>
-      </Link>
+      <div className="butoonFloatPosition">
+        <Box sx={{ height: 320, transform: 'translateZ(0px)', flexGrow: 1 }}>
+          <Link to="cad">
+            <SpeedDial
+              ariaLabel="SpeedDial openIcon example"
+              sx={{ position: 'absolute', bottom: 16, right: 16 }}
+              icon={<SpeedDialIcon icon={<AddIcon />} openIcon={<AddIcon />} />}
+            >
+            </SpeedDial>
+          </Link>
+        </Box>
+      </div>
       <Footer />
     </>
   );

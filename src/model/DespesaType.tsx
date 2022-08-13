@@ -5,7 +5,7 @@ interface DespesaType {
   valor: number,
   data: string,
   porque?: string,
-  meioPagamento: string,
+  meioDePagamento: string,
   onde?: string,
   categoria: string
 };

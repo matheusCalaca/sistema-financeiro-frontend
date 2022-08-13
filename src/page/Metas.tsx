@@ -3,9 +3,7 @@ import '../resource/css/Receita.css';
 import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
 import ReceitaType from '../model/ReceitaType';
-import DespesaType from '../model/DespesaType';
 import receita from '../data/dataReceita.json';
-import despesa from '../data/dataDespesa.json';
 import MesType from '../model/MesType';
 import meses from '../data/dataMes.json';
 import { Link, useNavigate } from 'react-router-dom';
@@ -19,8 +17,6 @@ import AddIcon from '@mui/icons-material/Add';
 export const dataMes: MesType[] = meses;
 
 export const dataReceita: ReceitaType[] = receita;
-
-export const dataDespesa: DespesaType[] = despesa;
 
 export const Metas = (): JSX.Element => {
 
