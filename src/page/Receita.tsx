@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../resource/css/Receita.css';
 import Footer from '../component/Footer';
 import HeaderDash from '../component/HeaderDash';
-import { MdAdd } from 'react-icons/md';
+import AddIcon from '@mui/icons-material/Add';
 import ReceitaType from '../model/ReceitaType';
 import DespesaType from '../model/DespesaType';
 import DashboardGrafico from '../component/DashboardGrafico';
@@ -12,6 +12,7 @@ import MesType from '../model/MesType';
 import meses from '../data/dataMes.json';
 import { Link } from 'react-router-dom';
 import api from '../api/API';
+import { Box, SpeedDial, SpeedDialIcon } from '@mui/material';
 
 export const dataMes: MesType[] = meses;
 
@@ -136,11 +137,19 @@ export const Receita = (): JSX.Element => {
         </div>
       </div>
 
-      <Link to="cad">
-        <div className="butoonFloat">
-          <MdAdd />
-        </div>
-      </Link>
+      <div className="butoonFloatPosition">
+        <Box sx={{ height: 320, transform: 'translateZ(0px)', flexGrow: 1 }}>
+          <Link to="cad">
+            <SpeedDial
+              ariaLabel="SpeedDial openIcon example"
+              sx={{ position: 'absolute', bottom: 16, right: 16 }}
+              icon={<SpeedDialIcon icon={<AddIcon />} openIcon={<AddIcon />} />}
+            >
+            </SpeedDial>
+          </Link>
+        </Box>
+      </div>
+
       <Footer />
     </>
   );
