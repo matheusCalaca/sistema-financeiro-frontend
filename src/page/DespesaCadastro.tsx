@@ -15,7 +15,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { isMobile } from 'react-device-detect';
 
 export const dataMeioPagamento: OptionType[] = meioPagamento;
-export const dataCategory: OptionType[] = category;
+// export const dataCategory: OptionType[] = category;
 
 export type Despesa = {
   id?: number;
@@ -33,6 +33,7 @@ export type Despesa = {
 export const DespesaCadastro = (): JSX.Element => {
   const [currentMeioPagamento, setCurrentMeioPagamento] = useState<OptionType>();
   const [currentCategory, setCurrentCategory] = useState<OptionType>();
+  const [dataCategory, setDataCategory] = useState<OptionType[]>();
   const [despesaCurrente, setDespesaCurrente] = useState<Despesa>({ idCliente: 1 });
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = React.useState("");
@@ -42,14 +43,19 @@ export const DespesaCadastro = (): JSX.Element => {
 
   useEffect(() => {
     getDespesa()
+    getCategoria()
   }, [id])
 
   useEffect(() => {
-    setCurrentMeioPagamento(dataMeioPagamento[Number(returnIndexMeioDePagamentos())]);
-    console.log("categoria");
-    console.log(returnIndexCategoria());
+    getCategoria()
+  }, [])
 
-    // setDespesaCurrente(dataCategory[returnIndexCategoria()]);
+  useEffect(() => {
+    setCurrentMeioPagamento(dataMeioPagamento[Number(returnIndexMeioDePagamentos())]);
+    console.log(despesaCurrente);
+    // if (dataCategory) {
+    //   setDespesaCurrente(dataCategory[Number(returnIndexCategoria())]);
+    // }
   }, [despesaCurrente])
 
   function changeMeioPagamento(event: React.ChangeEvent<HTMLSelectElement>) {
@@ -60,9 +66,12 @@ export const DespesaCadastro = (): JSX.Element => {
 
   function changeCategory(event: React.ChangeEvent<HTMLSelectElement>) {
     event.preventDefault();
-    setCurrentCategory(dataCategory[Number(event.target.value) - 1]);
-    //todo: trocar pelo real
-    setDespesaCurrente({ ...despesaCurrente, idCategoria: 1 });
+    let valor: number = Number(event.target.value);
+    console.log(valor);
+    setDespesaCurrente({ ...despesaCurrente, idCategoria: valor });
+    console.log(despesaCurrente);
+
+
   }
 
 
@@ -128,6 +137,14 @@ export const DespesaCadastro = (): JSX.Element => {
       .catch((err) => console.log(err))
   }
 
+  async function getCategoria() {
+    await api.get(`categoria`)
+      .then((res) => {
+        setDataCategory(res.data);
+      })
+      .catch((err) => console.log(err))
+  }
+
   function returnIndexMeioDePagamentos(): number {
     var fieldData = dataMeioPagamento,
       i = 0, ii = dataMeioPagamento.length;
@@ -136,10 +153,15 @@ export const DespesaCadastro = (): JSX.Element => {
   }
 
   function returnIndexCategoria(): number {
-    var fieldData = dataCategory,
-      i = 0, ii = dataCategory.length;
-    for (i; i < ii; i++) if (fieldData[i].value === despesaCurrente.idCategoria) break;
-    return i;
+    if (dataCategory) {
+      var fieldData = dataCategory,
+        i = 0, ii = dataCategory.length;
+      for (i; i < ii; i++) if (fieldData[i].value === despesaCurrente.idCategoria) break;
+      return i;
+    }
+
+    return 0;
+
   }
 
 
@@ -258,7 +280,7 @@ export const DespesaCadastro = (): JSX.Element => {
           <div className='inputCad'>
             <NativeSelect fullWidth value={currentCategory?.value} onChange={changeCategory}>
               <option>Categoria</option>
-              {dataCategory.map(item => <option key={item.value} value={item.value}>{item.name}</option>)}
+              {dataCategory?.map(item => <option key={item.value} value={item.value}>{item.name}</option>)}
             </NativeSelect>
           </div>
         </div>
