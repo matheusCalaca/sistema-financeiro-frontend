@@ -121,7 +121,7 @@ export const Despesa = (): JSX.Element => {
       <HeaderDash />
       <div className='saldoDash'>
         <div className='titleDash'>
-          <span>{currentMes.name} 2021</span>
+          <span>{currentMes.name} 2022</span>
         </div>
         <DashboardGrafico receita={receitas} despesa={despesas} />
 
