@@ -54,7 +54,7 @@ const DashboardGrafico: FC<DashGraficoProps> = ({ receita, despesa }): JSX.Eleme
         </div>
         <div className='dadosFinanceiro'>
           <div className='titleSaldo'>
-            <div>Saldo: </div> <div><b>{convertMoney((somaReceita() - somaDespesa()).toString())}</b></div>
+            <div>Saldo: </div> <div><b>{convertMoney((somaReceita() - somaDespesa()).toFixed(2).toString())}</b></div>
           </div>
           <div className='resumoFinanceiro'>
             <span>Receita: </span> <span className='colorGreen'><b>{convertMoney(somaReceita().toString())}</b></span> <span>/</span> <span>Despesa:</span> <span className='colorRed'><b>{convertMoney(somaDespesa().toString())}</b></span> 
