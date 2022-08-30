@@ -3,10 +3,21 @@ import '../resource/css/Home.css';
 import { MdCheckCircleOutline } from "react-icons/md";
 import Header from '../component/Header';
 import Footer from '../component/Footer';
+import api from '../api/API';
 
 function App() {
+
+  async function gethealth() {
+    await api.get(`actuator/health`)
+      .then((res) => {
+        console.log(res.data);
+      })
+      .catch((err) => console.log(err))
+  }
+
   return (
     <>
+    {gethealth}
       <Header />
       <div className='content'>
         <div className='firstPage'>
