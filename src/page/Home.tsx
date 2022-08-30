@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../resource/css/Home.css';
 import { MdCheckCircleOutline } from "react-icons/md";
 import Header from '../component/Header';
@@ -7,6 +7,7 @@ import api from '../api/API';
 
 function App() {
 
+  // chamada para start do back end ate as proximas paginas -> solução provisoria
   async function gethealth() {
     await api.get(`actuator/health`)
       .then((res) => {
@@ -15,9 +16,13 @@ function App() {
       .catch((err) => console.log(err))
   }
 
+
+  useEffect(() => {
+    gethealth()
+  }, []);
+  
   return (
     <>
-    {gethealth}
       <Header />
       <div className='content'>
         <div className='firstPage'>

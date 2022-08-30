@@ -1,11 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import '../resource/css/Login.css';
 import { MdAccountCircle, MdAccountBox, MdPassword } from "react-icons/md";
 import Header from '../component/Header';
 import { Link } from 'react-router-dom';
 import Footer from '../component/Footer';
+import api from '../api/API';
 
 function Login() {
+
+    // chamada para start do back end ate as proximas paginas -> solução provisoria
+    async function gethealth() {
+      await api.get(`actuator/health`)
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => console.log(err))
+    }
+  
+  
+    useEffect(() => {
+      gethealth()
+    }, []);
+
   return (
     <>
       <Header />
