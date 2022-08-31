@@ -11,6 +11,7 @@ import TableDash from '../component/TableDash';
 import MesType from '../model/MesType';
 import meses from '../data/dataMes.json';
 import api from '../api/API';
+import { Backdrop, CircularProgress, Grid, Snackbar } from '@mui/material';
 
 export const dataMes: MesType[] = meses;
 export let dataDash: DashType[] = [];
@@ -77,17 +78,45 @@ export const Dashboard = (): JSX.Element => {
   const [currentMes, setCurrentMes] = useState<MesType>(dataMes[new Date().getMonth()]);
   const [receitas, setReceitas] = useState<ReceitaType[]>([]);
   const [despesas, setDespesas] = useState<DespesaType[]>([]);
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
-    loadDados()
-  }, [])
+    gethealth()
+  }, []);
 
   useEffect(() => {
     loadDados()
   }, [currentMes])
 
+  const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    setOpen(false);
+  };
+
+  const delay = (ms: number | undefined) => new Promise(res => setTimeout(res, ms));
+
+  // chamada para start do back end ate as proximas paginas -> solução provisoria
+  async function gethealth() {
+    await api.get(`actuator/health`)
+      .then((res) => {
+        console.log(res.data);
+        setOpen(false);
+        loadDados()
+      })
+      .catch(async (err) => {
+        console.log(err)
+        setOpen(true)
+        await delay(5000);
+        gethealth()
+      }
+      )
+  }
+
   async function loadDados() {
-    await api.get("receita", { params: { idCliente: 1, month: currentMes.value  } })
+    await api.get("receita", { params: { idCliente: 1, month: currentMes.value } })
       .then(response => {
         setReceitas(response.data)
         console.log(receitas);
@@ -97,7 +126,7 @@ export const Dashboard = (): JSX.Element => {
         () => { console.log("finalizado"); }
       );
 
-      await api.get("despesa", { params: { idCliente: 1, month: currentMes.value  } })
+    await api.get("despesa", { params: { idCliente: 1, month: currentMes.value } })
       .then(response => {
         setDespesas(response.data)
         console.log(despesas);
@@ -137,6 +166,26 @@ export const Dashboard = (): JSX.Element => {
         </div>
       </div>
 
+
+      <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+        onClick={handleClose}
+      >
+        <Grid container
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          spacing={4}
+        >
+          <Grid xs={12}>
+            <CircularProgress color="inherit" />
+          </Grid>
+          <Grid xs={10}>
+            <h2>Iniciando o BACK-END, por favor aguarde !</h2>
+          </Grid>
+        </Grid>
+      </Backdrop>
       <Footer />
     </>
   );
