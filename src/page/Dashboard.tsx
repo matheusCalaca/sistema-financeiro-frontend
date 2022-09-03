@@ -78,7 +78,7 @@ export const Dashboard = (): JSX.Element => {
   const [currentMes, setCurrentMes] = useState<MesType>(dataMes[new Date().getMonth()]);
   const [receitas, setReceitas] = useState<ReceitaType[]>([]);
   const [despesas, setDespesas] = useState<DespesaType[]>([]);
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   useEffect(() => {
     gethealth()
