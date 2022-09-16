@@ -33,7 +33,7 @@ export const MetasCadastro = (): JSX.Element => {
   }, [id]);
 
   async function getMeta() {
-    await api.get(`meta/${id}`)
+    await api.get(`meta/${id}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
       .then((res) => {
         setMetaCurrente(res.data);
       })
@@ -65,7 +65,7 @@ export const MetasCadastro = (): JSX.Element => {
 
   function cadastro() {
     if (valid()) {
-      api.post("meta", metaCurrente)
+      api.post("meta", metaCurrente, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
         .then((res) => { console.log(res.data); navegate("/meta") })
         .catch((err) => { handleClick(err.message) })
     }
@@ -80,7 +80,7 @@ export const MetasCadastro = (): JSX.Element => {
   }
 
   function excluir() {
-    api.delete(`meta\\${id}`)
+    api.delete(`meta\\${id}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
       .then((res) => {
         navegate("/meta")
       })

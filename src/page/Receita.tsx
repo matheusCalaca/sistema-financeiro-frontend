@@ -31,7 +31,7 @@ export const Receita = (): JSX.Element => {
   }, [currentMes])
 
   async function loadDados() {
-    await api.get("receita", { params: { idCliente: 1, month: currentMes.value  } })
+    await api.get("receita", { params: { idCliente: 1, month: currentMes.value }, headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
       .then(response => {
         setReceitas(response.data)
         console.log(receitas);
@@ -41,7 +41,7 @@ export const Receita = (): JSX.Element => {
         () => { console.log("finalizado"); }
       );
 
-      await api.get("despesa", { params: { idCliente: 1, month: currentMes.value  } })
+    await api.get("despesa", { params: { idCliente: 1, month: currentMes.value }, headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
       .then(response => {
         setDespesas(response.data)
         console.log(despesas);
@@ -52,7 +52,7 @@ export const Receita = (): JSX.Element => {
       );
   }
 
-  function getCurrentMonth(){
+  function getCurrentMonth() {
     setCurrentMes(dataMes[new Date().getMonth()]);
   }
 

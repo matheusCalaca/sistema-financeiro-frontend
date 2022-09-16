@@ -28,7 +28,7 @@ export const Metas = (): JSX.Element => {
   }, [])
 
   async function loadDados() {
-    await api.get("meta", { params: { idCliente: 1 } })
+    await api.get("meta", { params: { idCliente: 1 }, headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
       .then(response => {
         setMetas(response.data)
         console.log(metas);

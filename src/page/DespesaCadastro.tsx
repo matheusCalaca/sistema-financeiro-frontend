@@ -115,7 +115,7 @@ export const DespesaCadastro = (): JSX.Element => {
 
   function cadastro() {
     if (valid()) {
-      api.post("despesa", despesaCurrente)
+      api.post("despesa", despesaCurrente, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
         .then((res) => { console.log(res.data); navegate("/despesa") })
         .catch((err) => { handleClick(err.message) })
     }
@@ -123,14 +123,14 @@ export const DespesaCadastro = (): JSX.Element => {
 
   function update() {
     if (valid()) {
-      api.put("despesa", despesaCurrente)
+      api.put("despesa", despesaCurrente, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
         .then((res) => { console.log(res.data); navegate("/despesa") })
         .catch((err) => { handleClick(err.message) })
     }
   }
 
   async function getDespesa() {
-    await api.get(`despesa/${id}`)
+    await api.get(`despesa/${id}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
       .then((res) => {
         setDespesaCurrente(res.data);
       })
@@ -138,7 +138,7 @@ export const DespesaCadastro = (): JSX.Element => {
   }
 
   async function getCategoria() {
-    await api.get(`categoria`)
+    await api.get(`categoria`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
       .then((res) => {
         setDataCategory(res.data);
       })
@@ -167,7 +167,7 @@ export const DespesaCadastro = (): JSX.Element => {
 
 
   function excluir() {
-    api.delete(`despesa\\${id}`)
+    api.delete(`despesa\\${id}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
       .then((res) => {
         navegate("/despesa")
       })

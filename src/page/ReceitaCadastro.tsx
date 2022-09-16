@@ -34,7 +34,7 @@ export const ReceitaCadastro = (): JSX.Element => {
   }, [id]);
 
   async function getReceita() {
-    await api.get(`receita/${id}`)
+    await api.get(`receita/${id}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
       .then((res) => {
         console.log(res.data);
 
@@ -72,7 +72,7 @@ export const ReceitaCadastro = (): JSX.Element => {
 
   function cadastro() {
     if (valid()) {
-      api.post("receita", receitaCurrente)
+      api.post("receita", receitaCurrente, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
         .then((res) => { navegate("/receita") })
         .catch((err) => { handleClick(err.message) });
     }
@@ -80,14 +80,14 @@ export const ReceitaCadastro = (): JSX.Element => {
 
   function update() {
     if (valid()) {
-      api.put("receita", receitaCurrente)
+      api.put("receita", receitaCurrente, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
         .then((res) => { navegate("/receita") })
         .catch((err) => { handleClick(err.message) });
     }
   }
 
   function excluir() {
-    api.delete(`receita\\${id}`)
+    api.delete(`receita\\${id}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
       .then((res) => {
         navegate("/receita")
       })
