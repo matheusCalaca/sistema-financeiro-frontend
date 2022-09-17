@@ -1,18 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import '../resource/css/cadastro.css';
 import Footer from '../component/Footer';
-import HeaderDash from '../component/HeaderDash';
-import OptionType from '../model/OptionType';
-import meioPagamento from '../data/dataMeioPagamento.json'
-import category from '../data/dataCategoria.json'
 import api from '../api/API';
-import { Navigate, useNavigate, useParams } from 'react-router-dom';
-import { convertSetDate } from '../component/Uteis';
-import { Alert, Box, FormControl, InputLabel, MenuItem, NativeSelect, Select, SelectChangeEvent, Snackbar, SpeedDial, SpeedDialAction, SpeedDialIcon, TextField } from '@mui/material';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { Alert, Box,  NativeSelect, Snackbar, SpeedDial, SpeedDialAction, SpeedDialIcon, TextField } from '@mui/material';
 import SaveIcon from '@mui/icons-material/Save';
-import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { isMobile } from 'react-device-detect';
+import Header from '../component/Header';
 
 
 export type Estado = {
@@ -214,7 +209,7 @@ export const ClientCadastro = (): JSX.Element => {
 
   return (
     <>
-      <HeaderDash />
+      <Header />
       <div className='saldoDash'>
 
         <div className='tableResumo'>
