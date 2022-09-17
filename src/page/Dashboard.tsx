@@ -116,7 +116,7 @@ export const Dashboard = (): JSX.Element => {
   }
 
   async function loadDados() {
-    await api.get("receita", { params: { idCliente: 1, month: currentMes.value }, headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } } )
+    await api.get("receita", { params: {  month: currentMes.value }, headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } } )
       .then(response => {
         setReceitas(response.data)
         console.log(receitas);
@@ -126,7 +126,7 @@ export const Dashboard = (): JSX.Element => {
         () => { console.log("finalizado"); }
       );
 
-    await api.get("despesa", { params: { idCliente: 1, month: currentMes.value }, headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` }  })
+    await api.get("despesa", { params: { month: currentMes.value }, headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` }  })
       .then(response => {
         setDespesas(response.data)
         console.log(despesas);
