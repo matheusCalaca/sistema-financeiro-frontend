@@ -40,6 +40,7 @@ function Login() {
         .then((res) => {
           console.log(res.data);
           sessionStorage.setItem("token", res.data.token);
+          
           navegate("/dashboard")
         })
         .catch((err) => {

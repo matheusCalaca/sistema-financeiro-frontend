@@ -73,7 +73,7 @@ export const MetasCadastro = (): JSX.Element => {
 
   function update() {
     if (valid()) {
-      api.put("meta", metaCurrente)
+      api.put("meta", metaCurrente, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
         .then((res) => { console.log(res.data); navegate("/meta") })
         .catch((err) => { handleClick(err.message) })
     }
