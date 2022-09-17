@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ClientCadastro } from '../page/ClientCadastro';
 import Dashboard from '../page/Dashboard';
 import Despesa from '../page/Despesa';
 import { DespesaCadastro } from '../page/DespesaCadastro';
@@ -17,6 +18,7 @@ function AppRouter() {
                 <Route path="/" element={<App />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/cliente/cad" element={<ClientCadastro />} />
                 <Route path="/receita" element={<Receita />} />
                 <Route path="/receita/cad" element={<ReceitaCadastro />} />
                 <Route path="/receita/cad/:id" element={<ReceitaCadastro />} />

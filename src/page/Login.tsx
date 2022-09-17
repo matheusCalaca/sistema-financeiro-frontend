@@ -40,7 +40,7 @@ function Login() {
         .then((res) => {
           console.log(res.data);
           sessionStorage.setItem("token", res.data.token);
-          
+
           navegate("/dashboard")
         })
         .catch((err) => {
@@ -114,7 +114,7 @@ function Login() {
             <button onClick={autenticar}>Entrar</button>
           </div>
           <div className='fieldButton'>
-            <Link to="/">cadastrar-se</Link>
+            <Link to="/cliente/cad">cadastrar-se</Link>
           </div>
         </div>
       </div>
