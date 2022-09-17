@@ -1,7 +1,7 @@
 import { Button, Drawer } from '@mui/material';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MdMenu, MdOutlineAccountCircle } from 'react-icons/md';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../resource/css/HeaderDash.css';
 import logo from '../resource/img/logo.svg';
 
@@ -9,6 +9,7 @@ type Anchor = 'top' | 'left' | 'bottom' | 'right';
 
 function HeaderDash() {
 
+  const navegate = useNavigate();
 
   const [state, setState] = React.useState({
     top: false,
@@ -16,6 +17,17 @@ function HeaderDash() {
     bottom: false,
     right: false,
   });
+
+  useEffect(() => {
+    let dataToken = sessionStorage.getItem("expiredToken");
+    if (dataToken != null) {
+      if (Date.parse(dataToken) < Date.now()) {
+        navegate("/");
+      }
+    } else {
+      navegate("/");
+    }
+  }, []);
 
 
   const toggleDrawer =

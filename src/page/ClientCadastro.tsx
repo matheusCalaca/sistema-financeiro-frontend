@@ -44,7 +44,6 @@ export const ClientCadastro = (): JSX.Element => {
     event.preventDefault();
     const { name, value } = event.target;
     setClienteCurrente({ ...clienteCurrente, [name]: value });
-    console.log(clienteCurrente);
 
   }
 
@@ -53,7 +52,6 @@ export const ClientCadastro = (): JSX.Element => {
     const { name, value } = event.target;
     setEnderecoCurrente({ ...enderecoCurrente, [name]: value });
     setClienteCurrente({ ...clienteCurrente, endereco: enderecoCurrente });
-    console.log(clienteCurrente);
 
   }
 
@@ -64,7 +62,6 @@ export const ClientCadastro = (): JSX.Element => {
     setEstadoCurrent(est);
     setEnderecoCurrente({ ...enderecoCurrente, estado: est });
     setClienteCurrente({ ...clienteCurrente, endereco: enderecoCurrente });
-    console.log(clienteCurrente);
 
   }
 
