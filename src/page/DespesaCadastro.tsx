@@ -13,6 +13,7 @@ import SaveIcon from '@mui/icons-material/Save';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import { isMobile } from 'react-device-detect';
+import { isTemplateExpression } from 'typescript';
 
 export const dataMeioPagamento: OptionType[] = meioPagamento;
 // export const dataCategory: OptionType[] = category;
@@ -52,11 +53,13 @@ export const DespesaCadastro = (): JSX.Element => {
 
   useEffect(() => {
     setCurrentMeioPagamento(dataMeioPagamento[Number(returnIndexMeioDePagamentos())]);
-    console.log(despesaCurrente);
-    // if (dataCategory) {
-    //   setDespesaCurrente(dataCategory[Number(returnIndexCategoria())]);
-    // }
   }, [despesaCurrente])
+
+  useEffect(() => {
+    if (dataCategory) {
+      setCurrentCategory(dataCategory[Number(returnIndexCategoria())]);
+    }
+  }, [dataCategory])
 
   function changeMeioPagamento(event: React.ChangeEvent<HTMLSelectElement>) {
     event.preventDefault();
@@ -71,9 +74,7 @@ export const DespesaCadastro = (): JSX.Element => {
     setDespesaCurrente({ ...despesaCurrente, idCategoria: valor });
     console.log(despesaCurrente);
 
-
   }
-
 
   function changeInputs(event: React.ChangeEvent<any>) {
     event.preventDefault();
@@ -133,6 +134,7 @@ export const DespesaCadastro = (): JSX.Element => {
     await api.get(`despesa/${id}`, { headers: { 'Authorization': `Bearer ${sessionStorage.getItem("token")}` } })
       .then((res) => {
         setDespesaCurrente(res.data);
+        console.log(despesaCurrente);
       })
       .catch((err) => console.log(err))
   }
